@@ -6,7 +6,6 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '
 const state = {
   meta: {title: 'English Expression Toolkit', subtitle: '英语表达速查手册'},
   categories: [],
-  quick: [],
   store: new Map(),   // id -> 表达数据
   pending: new Set(), // 还没写入磁盘的新表达 id
   modified: new Set(),// 已存在、被修改过的表达 id
@@ -34,7 +33,6 @@ async function load() {
   const data = await res.json();
   state.meta = {title: data.title, subtitle: data.subtitle};
   state.categories = data.categories || [];
-  state.quick = data.quick || [];
   state.store = new Map();
   state.pending = new Set();
   state.modified = new Set();
@@ -82,9 +80,32 @@ function renderSections() {
 </section>`).join('');
 }
 
-function renderQuick() {
-  $('quick-body').innerHTML = state.quick.map((q, i) => `<tr class="quick-row" data-i="${i}" data-search="${esc((q.want + ' ' + q.say).toLowerCase())}"${state.editing ? ' draggable="true"' : ''}><td>${esc(q.want)}</td><td><code>${esc(q.say)}</code><button class="copy" type="button" data-copy="${esc(q.say)}" aria-label="复制表达">复制</button></td><td class="qactions"><button type="button" class="del-q" data-act="del-quick" title="删除这一条">×</button></td></tr>`).join('');
+function shortTitle(t) {
+  const p = t.split(' / ');
+  return p.length > 2 ? p.slice(0, 2).join(' / ') + ' …' : t;
 }
+
+function renderQuick() {
+  $('quick-body').innerHTML = state.categories.map(cat => {
+    const rows = cat.items.map(id => state.store.get(id)).filter(Boolean).map(d => {
+      const want = (d.use || d.meaning).replace(/（同义表达）$/, '');
+      return `<li class="q-row" data-search="${esc(searchText(d))}"><span class="q-want">${esc(want)}</span><a class="q-say" href="#e-${esc(d.id)}" data-jump="${esc(d.id)}">${esc(shortTitle(d.title))}</a><button class="copy" type="button" data-copy="${esc(d.title)}" aria-label="复制表达">复制</button></li>`;
+    }).join('');
+    return rows ? `<details class="q-group" open><summary>${headingHtml(cat.name)}</summary><ul>${rows}</ul></details>` : '';
+  }).join('');
+}
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-jump]');
+  if (!a) return;
+  e.preventDefault();
+  const card = document.querySelector(`#sections .card[data-id="${CSS.escape(a.dataset.jump)}"]`);
+  if (!card) return;
+  card.scrollIntoView({behavior: 'smooth', block: 'center'});
+  card.classList.remove('flash');
+  void card.offsetWidth;
+  card.classList.add('flash');
+});
 
 function render() {
   renderQuick();
@@ -110,15 +131,19 @@ function applyFilter() {
     sec.style.display = state.editing || visible ? '' : 'none';
   });
   let quickShown = 0;
-  document.querySelectorAll('#quick-body tr').forEach(row => {
+  document.querySelectorAll('#quick-body .q-row').forEach(row => {
     const match = (!q || (row.dataset.search || '').includes(q)) && filter === 'all';
     row.style.display = match ? '' : 'none';
     if (match) quickShown++;
   });
-  $('quick-panel').style.display = state.editing || (filter === 'all' && (!q || quickShown > 0)) ? '' : 'none';
-  $('empty').style.display = !state.editing && shown === 0 && quickShown === 0 ? 'block' : 'none';
+  document.querySelectorAll('#quick-body .q-group').forEach(g => {
+    g.style.display = [...g.querySelectorAll('.q-row')].some(r => r.style.display !== 'none') ? '' : 'none';
+    if (q) g.open = true;
+  });
+  $('quick-panel').style.display = !state.editing && filter === 'all' && quickShown > 0 ? '' : 'none';
+  $('empty').style.display = !state.editing && shown === 0 ? 'block' : 'none';
   $('resultCount').textContent = state.editing
-    ? `编辑模式 · ${state.categories.length} 个分类 · ${cards.length} 条表达 · ${state.quick.length} 条速查`
+    ? `编辑模式 · ${state.categories.length} 个分类 · ${cards.length} 条表达`
     : `找到 ${shown} 条表达` + (filter === 'all' && !q ? ' · 显示完整手册' : '');
 }
 
@@ -204,7 +229,7 @@ async function save() {
     const res = await fetch('/api/save', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({catalog: {...state.meta, categories: state.categories, quick: state.quick}, expressions, updated})
+      body: JSON.stringify({catalog: {...state.meta, categories: state.categories}, expressions, updated})
     });
     const out = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(out.error || res.status);
@@ -233,9 +258,6 @@ document.addEventListener('click', e => {
     setDirty(); render();
   } else if (act === 'edit-card') {
     openExprDialog(btn.closest('.card').dataset.id);
-  } else if (act === 'del-quick') {
-    state.quick.splice(+btn.closest('tr').dataset.i, 1);
-    setDirty(); render();
   } else if (act === 'del-cat') {
     const cat = state.categories.find(c => c.id === btn.closest('.section').dataset.cat);
     if (!confirm(`删除分类“${cat.name}”？\n其中 ${cat.items.length} 条表达会从该分类移除；若它们不在其他分类中，保存时对应页面会被移到 sections/_deleted/。`)) return;
@@ -257,14 +279,6 @@ $('addCat').addEventListener('click', () => {
   state.categories.push({id: 'c' + Date.now().toString(36), name, items: []});
   setDirty(); render();
   document.querySelector('#sections .section:last-child')?.scrollIntoView({behavior: 'smooth', block: 'center'});
-});
-
-$('quickAddBtn').addEventListener('click', () => {
-  const want = $('quickWant').value.trim(), say = $('quickSay').value.trim();
-  if (!want || !say) { toast('请把“我想表达”和“可以使用”都填上', true); return; }
-  state.quick.push({want, say});
-  $('quickWant').value = $('quickSay').value = '';
-  setDirty(); render();
 });
 
 /* ---------- 新增表达 ---------- */
@@ -290,7 +304,7 @@ function openExprDialog(id = null) {
   $('exprForm').reset();
   $('dlgTitle').textContent = d ? '编辑表达' : '新增表达';
   $('fSubmit').textContent = d ? '保存修改' : '添加';
-  $('fCatField').style.display = $('fQuickField').style.display = d ? 'none' : '';
+  $('fCatField').style.display = d ? 'none' : '';
   $('fCat').required = !d;
   if (!d) $('fCat').innerHTML = state.categories.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join('');
   $('fExamples').innerHTML = '';
@@ -335,7 +349,6 @@ $('exprForm').addEventListener('submit', e => {
   state.store.set(data.id, data);
   state.pending.add(data.id);
   state.categories.find(c => c.id === $('fCat').value).items.push(data.id);
-  if ($('fQuick').checked) state.quick.push({want: data.use || data.meaning, say: title});
   dlg.close();
   setDirty(); render();
   const el = document.querySelector(`.card[data-id="${CSS.escape(data.id)}"]`);
@@ -364,7 +377,7 @@ document.addEventListener('dragstart', e => {
   if (!state.editing) return;
   const el = e.target;
   if (!(el instanceof Element)) return;
-  const kind = el.matches('.card') ? 'card' : el.matches('.quick-row') ? 'row' : el.matches('.section') ? 'cat' : null;
+  const kind = el.matches('.card') ? 'card' : el.matches('.section') ? 'cat' : null;
   if (!kind) { e.preventDefault(); return; }
   e.stopPropagation();
   drag = {kind, el};
@@ -385,13 +398,6 @@ document.addEventListener('dragover', e => {
     const over = t.closest('.card');
     if (over && over !== drag.el) place(cont, drag.el, afterByXY(e, over) ? over.nextSibling : over);
     else if (!over && ![...cont.children].some(c => c !== drag.el)) place(cont, drag.el, null);
-  } else if (drag.kind === 'row') {
-    const cont = t.closest('#quick-body');
-    if (!cont) return;
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-    const over = t.closest('tr');
-    if (over && over !== drag.el) place(cont, drag.el, afterByY(e, over) ? over.nextSibling : over);
   } else {
     const cont = t.closest('#sections');
     if (!cont) return;
@@ -410,18 +416,16 @@ document.addEventListener('dragend', e => {
   drag = null;
   document.querySelectorAll('.section[draggable]').forEach(s => s.removeAttribute('draggable'));
   if (e.dataTransfer.dropEffect === 'none') { render(); return; }   // 取消拖动：按状态重画，还原位置
-  const before = JSON.stringify([state.categories, state.quick]);
+  const before = JSON.stringify(state.categories);
   if (kind === 'card') {
     document.querySelectorAll('#sections .section').forEach(sec => {
       const cat = state.categories.find(c => c.id === sec.dataset.cat);
       cat.items = [...new Set([...sec.querySelectorAll('.card')].map(c => c.dataset.id))];
     });
-  } else if (kind === 'row') {
-    state.quick = [...document.querySelectorAll('#quick-body tr')].map(tr => state.quick[+tr.dataset.i]);
   } else {
     state.categories = [...document.querySelectorAll('#sections .section')].map(s => state.categories.find(c => c.id === s.dataset.cat));
   }
-  if (JSON.stringify([state.categories, state.quick]) !== before) setDirty();
+  if (JSON.stringify(state.categories) !== before) setDirty();
   render();
 });
 

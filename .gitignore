@@ -3,3 +3,5 @@ sections/_history/
 categories.json.bak
 categories.json.tmp
 node_modules/
+categories.regroup-backup.json
+categories.before-quick-removal.json

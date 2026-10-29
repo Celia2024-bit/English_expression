@@ -26,6 +26,7 @@
 <button data-filter="职场">职场</button>
 <button data-filter="比喻">比喻</button>
 <button data-filter="句式">句式</button>
+<button data-filter="同义表达">同义表达</button>
 </div>
 <div class="editbar" id="editbar">
 <button type="button" id="addExpr">+ 新增表达</button>
@@ -39,13 +40,8 @@
 </div>
 
 <section class="panel" id="quick-panel">
-<h2>一页速查 <span class="small">— 写日记时先从这里找</span></h2>
-<div class="table-wrap"><table><thead><tr><th>我想表达……</th><th>可以使用</th><th class="qactions"></th></tr></thead><tbody id="quick-body"></tbody></table></div>
-<div class="quick-add">
-<input type="text" id="quickWant" placeholder="我想表达……（中文）">
-<input type="text" id="quickSay" placeholder="可以使用……（英文）">
-<button type="button" id="quickAddBtn">添加速查条目</button>
-</div>
+<h2>一页速查 <span class="small">— 按“想表达什么”找，点英文可跳到详细卡片</span></h2>
+<div id="quick-body" class="q-grid"></div>
 </section>
 <div class="empty" id="empty">没有找到匹配的表达。可以试试更短的中文关键词或英文关键词。</div>
 
@@ -65,7 +61,6 @@
 <label class="field"><span>中文释义 <em>*</em></span><textarea id="fMeaning" required placeholder="试一试，尤其是动手做某件事。"></textarea></label>
 <label class="field"><span>快速定位</span><input type="text" id="fUse" placeholder="例如：尝试一件具体的事"></label>
 <div class="field"><span>例句（英文 / 中文）</span><div id="fExamples"></div><button type="button" id="fAddEx">+ 再加一条例句</button></div>
-<label class="check" id="fQuickField"><input type="checkbox" id="fQuick" checked> 同时加入“一页速查”表</label>
 <div class="dialog-actions"><button type="button" id="fCancel">取消</button><button type="submit" class="primary" id="fSubmit">添加</button></div>
 </form>
 </dialog>

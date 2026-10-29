@@ -39,7 +39,7 @@ function readBody(req, limit = 2 * 1024 * 1024) {
 const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : '');
 
 function cleanCatalog(c) {
-  if (!c || !Array.isArray(c.categories) || !Array.isArray(c.quick)) throw new HttpError(400, '分类数据格式不对');
+  if (!c || !Array.isArray(c.categories)) throw new HttpError(400, '分类数据格式不对');
   const seen = new Set();
   const categories = c.categories.map(cat => {
     const id = str(cat && cat.id, 64);
@@ -51,10 +51,7 @@ function cleanCatalog(c) {
     for (const it of items) if (typeof it !== 'string' || !ID_RE.test(it)) throw new HttpError(400, '表达 id 不合法：' + it);
     return {id, name, items: [...new Set(items)]};
   });
-  const quick = c.quick
-    .map(q => ({want: str(q && q.want, 300), say: str(q && q.say, 300)}))
-    .filter(q => q.want && q.say);
-  return {title: str(c.title, 200) || 'English Expression Toolkit', subtitle: str(c.subtitle, 200), categories, quick};
+  return {title: str(c.title, 200) || 'English Expression Toolkit', subtitle: str(c.subtitle, 200), categories};
 }
 
 async function handleSave(req, res) {
