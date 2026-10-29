@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Expression Toolkit｜英语表达速查手册</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:,">
+</head>
+<body>
+<header><div class="hero">
+<button id="editToggle" type="button">编辑</button>
+<div class="eyebrow">PERSONAL LANGUAGE NOTES</div>
+<h1>English Expression Toolkit</h1>
+<p>英语表达速查手册 · 按中文意思查找 · 口语、通用、正式与职场用法</p>
+<p>先搜中文意思或英文表达，再看例句和语气标签。适合写日记、练口语和工作沟通。</p>
+</div></header>
+<main>
+<div class="toolbar">
+<div class="search-row"><input id="search" type="search" placeholder="搜索中文意思或英文表达，例如：尝试、归根结底、suck" autocomplete="off"><button id="clear" type="button">清除</button></div>
+<div class="filters" id="filters">
+<button class="active" data-filter="all">全部</button>
+<button data-filter="口语">口语</button>
+<button data-filter="通用">通用</button>
+<button data-filter="正式">正式 / 书面</button>
+<button data-filter="职场">职场</button>
+<button data-filter="比喻">比喻</button>
+<button data-filter="句式">句式</button>
+</div>
+<div class="editbar" id="editbar">
+<button type="button" id="addExpr">+ 新增表达</button>
+<button type="button" id="addCat">+ 新增分类</button>
+<span class="spacer"></span>
+<span id="dirtyState" class="clean">没有修改</span>
+<button type="button" id="discard">放弃修改</button>
+<button type="button" id="save" class="primary" disabled>保存</button>
+</div>
+<div id="resultCount" aria-live="polite">正在加载…</div>
+</div>
+
+<section class="panel" id="quick-panel">
+<h2>一页速查 <span class="small">— 写日记时先从这里找</span></h2>
+<div class="table-wrap"><table><thead><tr><th>我想表达……</th><th>可以使用</th><th class="qactions"></th></tr></thead><tbody id="quick-body"></tbody></table></div>
+<div class="quick-add">
+<input type="text" id="quickWant" placeholder="我想表达……（中文）">
+<input type="text" id="quickSay" placeholder="可以使用……（英文）">
+<button type="button" id="quickAddBtn">添加速查条目</button>
+</div>
+</section>
+<div class="empty" id="empty">没有找到匹配的表达。可以试试更短的中文关键词或英文关键词。</div>
+
+<div id="sections"></div>
+
+<footer>整理原则：按“想表达什么”查找；相近表达放在一起；标签仅表示常见语气倾向，不代表只能在某种场景使用。可用浏览器打印功能另存为 PDF。</footer>
+</main>
+
+<dialog id="exprDialog">
+<form method="dialog" id="exprForm">
+<h2 id="dlgTitle">新增表达</h2>
+<label class="field"><span>英文表达 <em>*</em></span><input type="text" id="fTitle" placeholder="例如：have a go (at sth)" required></label>
+<div class="row2">
+<label class="field"><span>语气标签</span><input type="text" id="fTag" placeholder="例如：口语 / 通用"></label>
+<label class="field" id="fCatField"><span>所属分类 <em>*</em></span><select id="fCat" required></select></label>
+</div>
+<label class="field"><span>中文释义 <em>*</em></span><textarea id="fMeaning" required placeholder="试一试，尤其是动手做某件事。"></textarea></label>
+<label class="field"><span>快速定位</span><input type="text" id="fUse" placeholder="例如：尝试一件具体的事"></label>
+<div class="field"><span>例句（英文 / 中文）</span><div id="fExamples"></div><button type="button" id="fAddEx">+ 再加一条例句</button></div>
+<label class="check" id="fQuickField"><input type="checkbox" id="fQuick" checked> 同时加入“一页速查”表</label>
+<div class="dialog-actions"><button type="button" id="fCancel">取消</button><button type="submit" class="primary" id="fSubmit">添加</button></div>
+</form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

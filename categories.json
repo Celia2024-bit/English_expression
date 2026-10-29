@@ -1,0 +1,376 @@
+{
+  "title": "English Expression Toolkit",
+  "subtitle": "英语表达速查手册",
+  "categories": [
+    {
+      "id": "c01",
+      "name": "01 · 尝试、探索",
+      "items": [
+        "have-a-go-at-sth",
+        "dip-your-toe-into-sth",
+        "be-at-home-with-sth",
+        "be-into-sth",
+        "come-into-its-own"
+      ]
+    },
+    {
+      "id": "c02",
+      "name": "02 · 归根结底、根源与本身",
+      "items": [
+        "boil-down-to-sth",
+        "come-down-to-sth",
+        "in-and-of-itself",
+        "get-to-the-bottom-of-sth"
+      ]
+    },
+    {
+      "id": "c03",
+      "name": "03 · 改变、扭转与重新开始",
+      "items": [
+        "turn-the-tide",
+        "turn-sth-on-its-head",
+        "hit-reset",
+        "change-for-the-better-worse"
+      ]
+    },
+    {
+      "id": "c04",
+      "name": "04 · 忙乱、连续发生与影响",
+      "items": [
+        "run-around-like-a-headless-chicken",
+        "time-and-again",
+        "a-streak-of-sth-be-on-a-streak",
+        "have-a-grip-on-sth",
+        "let-sth-run-your-life",
+        "move-around"
+      ]
+    },
+    {
+      "id": "c05",
+      "name": "05 · 满足、愿望、损失与名声",
+      "items": [
+        "i-couldnt-ask-for-more",
+        "be-dying-to-do-sth",
+        "no-skin-off-my-nose-back",
+        "get-a-bad-rap-have-a-good-reputation",
+        "ive-seen-it-all-ive-been-through-a-lot",
+        "a-no-brainer"
+      ]
+    },
+    {
+      "id": "c06",
+      "name": "06 · 沟通、跟进与参与",
+      "items": [
+        "get-sth-across-get-across-to-sb",
+        "circle-back-to-sth-go-back-to-sth",
+        "bring-sb-on-board-get-on-board",
+        "be-in-be-out",
+        "run-out-of-time"
+      ]
+    },
+    {
+      "id": "c07",
+      "name": "07 · 比喻：跳板、融入与视觉享受",
+      "items": [
+        "a-stepping-stone-to-sth",
+        "weave-sth-into-sth",
+        "a-treat-for-the-eyes-a-feast-for-the-eyes"
+      ]
+    },
+    {
+      "id": "c08",
+      "name": "08 · 句式：比较、类比与强调，不停想，影响深刻",
+      "items": [
+        "its-one-thing-to-a-its-another-to-b",
+        "its-one-of-those-things-where",
+        "what-a-is-to-x-b-is-to-y",
+        "the-highest-point-of-the-pinnacle-of-the-highlight-of",
+        "give-x-and-y",
+        "as-as-it-has-ever-been",
+        "its-high-time"
+      ]
+    },
+    {
+      "id": "c09",
+      "name": "09 · 流行、控制与影响",
+      "items": [
+        "sth-is-a-thing",
+        "catch-on"
+      ]
+    },
+    {
+      "id": "c10",
+      "name": "10 · 利弊与好坏",
+      "items": [
+        "pros-and-cons",
+        "upsides-and-downsides",
+        "advantages-and-disadvantages",
+        "benefits-and-drawbacks"
+      ]
+    },
+    {
+      "id": "c11",
+      "name": "11 · 想不起来、没时间与连续发生",
+      "items": [
+        "its-on-the-tip-of-my-tongue"
+      ]
+    },
+    {
+      "id": "c12",
+      "name": "12 · 其他常用补充",
+      "items": [
+        "i-couldnt-ask-for-more",
+        "no-skin-off-my-nose-back",
+        "suck",
+        "under-the-sun"
+      ]
+    },
+    {
+      "id": "c13",
+      "name": "13 · 萦绕在心头的思绪",
+      "items": [
+        "keep-circling-back-to-sth",
+        "keep-sb-up-at-night",
+        "keep-haunting-sb",
+        "stand-out-to-sb"
+      ]
+    },
+    {
+      "id": "c14",
+      "name": "14 · 插入语、补充观点与强调论证",
+      "items": [
+        "at-the-very-least",
+        "to-be-fair",
+        "somewhere-along-the-way",
+        "somehow",
+        "nowhere-is-that-clearer-than-in"
+      ]
+    }
+  ],
+  "quick": [
+    {
+      "want": "试试看",
+      "say": "have a go at"
+    },
+    {
+      "want": "初步涉足新领域",
+      "say": "dip your toe into"
+    },
+    {
+      "want": "对某事很熟悉、自在",
+      "say": "be at home with"
+    },
+    {
+      "want": "对某事感兴趣",
+      "say": "be into"
+    },
+    {
+      "want": "归根结底",
+      "say": "boil down to / come down to"
+    },
+    {
+      "want": "查明问题根源",
+      "say": "get to the bottom of"
+    },
+    {
+      "want": "扭转局势",
+      "say": "turn the tide"
+    },
+    {
+      "want": "彻底颠覆",
+      "say": "turn sth on its head"
+    },
+    {
+      "want": "重新开始",
+      "say": "hit reset"
+    },
+    {
+      "want": "通向下一步的跳板",
+      "say": "a stepping stone to"
+    },
+    {
+      "want": "把某事融入另一件事",
+      "say": "weave sth into sth"
+    },
+    {
+      "want": "把意思传达清楚",
+      "say": "get sth across"
+    },
+    {
+      "want": "回到之前的话题",
+      "say": "circle back to"
+    },
+    {
+      "want": "争取别人的支持",
+      "say": "bring sb on board"
+    },
+    {
+      "want": "自己表示支持",
+      "say": "get on board / be on board with"
+    },
+    {
+      "want": "一次又一次",
+      "say": "time and again"
+    },
+    {
+      "want": "忙得团团转",
+      "say": "run around like a headless chicken"
+    },
+    {
+      "want": "非常想做某事",
+      "say": "be dying to"
+    },
+    {
+      "want": "已经非常满足",
+      "say": "I couldn't ask for more"
+    },
+    {
+      "want": "话到嘴边却想不起来",
+      "say": "It's on the tip of my tongue"
+    },
+    {
+      "want": "显而易见的选择",
+      "say": "a no-brainer"
+    },
+    {
+      "want": "赏心悦目",
+      "say": "a feast for the eyes"
+    },
+    {
+      "want": "让恐惧支配生活",
+      "say": "let fear run your life"
+    },
+    {
+      "want": "连续倒霉",
+      "say": "a streak of bad luck"
+    },
+    {
+      "want": "掌握基础知识",
+      "say": "have a good grip on the basics"
+    },
+    {
+      "want": "朝坏的方向变化",
+      "say": "change for the worse"
+    },
+    {
+      "want": "某事本身",
+      "say": "in and of itself"
+    },
+    {
+      "want": "两件事不是一回事",
+      "say": "It's one thing to..., it's another to..."
+    },
+    {
+      "want": "亲身体验才能明白",
+      "say": "It's one of those things where..."
+    },
+    {
+      "want": "类比两个事物的关系",
+      "say": "What A is to X, B is to Y"
+    },
+    {
+      "want": "表达巅峰成就",
+      "say": "the pinnacle of"
+    },
+    {
+      "want": "表达优缺点",
+      "say": "pros and cons"
+    },
+    {
+      "want": "没什么损失",
+      "say": "no skin off my nose"
+    },
+    {
+      "want": "有好名声",
+      "say": "have a good reputation"
+    },
+    {
+      "want": "经历过很多事情",
+      "say": "I've been through a lot / I've seen it all"
+    },
+    {
+      "want": "时间用完了",
+      "say": "run out of time"
+    },
+    {
+      "want": "出版 / 发布",
+      "say": "be out"
+    },
+    {
+      "want": "某现象存在或流行",
+      "say": "sth is a thing"
+    },
+    {
+      "want": "某事对人有强烈影响",
+      "say": "have a grip on sb"
+    },
+    {
+      "want": "赏心悦目",
+      "say": "a treat for the eyes"
+    },
+    {
+      "want": "某人支持某计划",
+      "say": "be on board with sth"
+    },
+    {
+      "want": "脑海中反复想到某事",
+      "say": "keep circling back to"
+    },
+    {
+      "want": "某事让人夜不能寐",
+      "say": "keep sb up at night"
+    },
+    {
+      "want": "某事一直萦绕挥之不去",
+      "say": "keep haunting sb"
+    },
+    {
+      "want": "留下深刻印象/引人注意",
+      "say": "stand out to sb"
+    },
+    {
+      "want": "至少/最起码",
+      "say": "at the very least"
+    },
+    {
+      "want": "公平地说/客观地讲",
+      "say": "to be fair"
+    },
+    {
+      "want": "在这个过程中/不知何时起",
+      "say": "somewhere along the way"
+    },
+    {
+      "want": "不知怎么地/不知为何",
+      "say": "somehow"
+    },
+    {
+      "want": "没有什么比……更能体现",
+      "say": "Nowhere is that clearer than in..."
+    },
+    {
+      "want": "给出 X，就会出现 Y",
+      "say": "Give X, and Y."
+    },
+    {
+      "want": "和以往任何时候一样",
+      "say": "as … as it has ever been"
+    },
+    {
+      "want": "早就该做某事了",
+      "say": "It’s high time + 主语 + 过去式"
+    },
+    {
+      "want": "开始流行/逐渐被接受",
+      "say": "catch on"
+    },
+    {
+      "want": "太差劲/讨厌",
+      "say": "suck"
+    },
+    {
+      "want": "世上所有/无所不包",
+      "say": "under the sun"
+    }
+  ]
+}

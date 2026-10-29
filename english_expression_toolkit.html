@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English Expression Toolkit｜英语表达速查手册</title>
+<style>
+:root{--bg:#f5f7fb;--paper:#fff;--ink:#172033;--muted:#657087;--line:#e1e6ef;--accent:#3559a8;--accent-soft:#eaf0ff;--tag:#edf2fa;--shadow:0 4px 16px rgba(26,42,76,.045)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Microsoft YaHei",sans-serif;line-height:1.62}
+header{background:linear-gradient(135deg,#172b52,#3559a8);color:white;padding:36px 20px 30px}
+.hero{max-width:1050px;margin:auto}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.78}
+h1{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.2;margin:.45rem 0 .8rem}
+header p{max-width:720px;color:#e0e8ff;margin:.3rem 0}
+main{max-width:1050px;margin:24px auto;padding:0 18px 60px}
+.toolbar{position:sticky;top:0;z-index:10;background:rgba(245,247,251,.96);backdrop-filter:blur(10px);padding:12px 0 14px}
+.search-row{display:flex;gap:10px;flex-wrap:wrap}
+input[type=search]{flex:1;min-width:220px;border:1px solid #ccd5e4;border-radius:12px;padding:13px 15px;font-size:1rem;background:white;color:var(--ink);outline:none}
+input[type=search]:focus{border-color:var(--accent);box-shadow:0 0 0 3px #3559a81b}
+button{cursor:pointer;border:1px solid #ccd5e4;border-radius:10px;background:white;color:var(--ink);padding:9px 12px;font-size:.9rem}
+button:hover{border-color:var(--accent);color:var(--accent)}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.filters button.active{background:var(--accent);border-color:var(--accent);color:white}
+#resultCount{font-size:.85rem;color:var(--muted);margin-top:8px}
+.panel,.section{background:transparent;margin-top:22px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+h2{font-size:1.3rem;margin:0 0 13px;letter-spacing:-.02em}
+h2 .small{font-size:.85rem;color:var(--muted);font-weight:400}
+.table-wrap{overflow:auto}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;border-bottom:1px solid var(--line);padding:10px 8px;vertical-align:top}
+th{font-size:.8rem;color:var(--muted);font-weight:600}
+td code{white-space:normal;color:#243e7a;font-size:.9rem}
+.copy{margin-left:8px;padding:3px 7px;font-size:.75rem;white-space:nowrap}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow);min-width:0}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+h3{font-size:1.08rem;line-height:1.35;margin:0;overflow-wrap:anywhere}
+.tag{flex-shrink:0;background:var(--tag);border-radius:999px;padding:3px 8px;font-size:.72rem;color:#425474;line-height:1.5}
+.meaning{margin:10px 0 7px}
+.use{margin:0 0 10px;color:var(--muted);font-size:.85rem}
+.examples{border-top:1px solid var(--line);padding-top:8px}
+.example{padding:6px 0}
+.en{font-weight:550}
+.zh{font-size:.9rem;color:var(--muted)}
+.note{font-size:.92rem;color:var(--muted)}
+.empty{display:none;background:white;border:1px dashed var(--line);padding:24px;border-radius:14px;text-align:center;color:var(--muted)}
+footer{color:var(--muted);font-size:.82rem;padding:28px 0 0}
+@media(max-width:700px){.cards{grid-template-columns:1fr}header{padding:28px 18px}main{padding:0 12px 40px}.card-top{flex-wrap:wrap}}
+@media print{body{background:white}header{background:white;color:#172033;padding:12px 0}header p{color:#333}.toolbar,.copy{display:none}main{max-width:none;padding:0}.cards{grid-template-columns:1fr 1fr}.card,.panel{box-shadow:none;break-inside:avoid}.section{break-before:auto}}
+</style>
+</head>
+<body>
+<header><div class="hero">
+<div class="eyebrow">PERSONAL LANGUAGE NOTES</div>
+<h1>English Expression Toolkit</h1>
+<p>英语表达速查手册 · 按中文意思查找 · 口语、通用、正式与职场用法</p>
+<p>先搜中文意思或英文表达，再看例句和语气标签。适合写日记、练口语和工作沟通。</p>
+</div></header>
+<main>
+<div class="toolbar">
+<div class="search-row"><input id="search" type="search" placeholder="搜索中文意思或英文表达，例如：尝试、归根结底、suck" autocomplete="off"><button id="clear" type="button">清除</button></div>
+<div class="filters" id="filters">
+<button class="active" data-filter="all">全部</button>
+<button data-filter="口语">口语</button>
+<button data-filter="通用">通用</button>
+<button data-filter="正式">正式 / 书面</button>
+<button data-filter="职场">职场</button>
+<button data-filter="比喻">比喻</button>
+<button data-filter="句式">句式</button>
+</div>
+<div id="resultCount" aria-live="polite">正在显示全部表达</div>
+</div>
+<section class="panel" id="quick-panel">
+<h2>一页速查 <span class="small">— 写日记时先从这里找</span></h2>
+<div class="table-wrap"><table><thead><tr><th>我想表达……</th><th>可以使用</th></tr></thead><tbody id="quick-body">
+<tr data-search="试试看 have a go at"><td>试试看</td><td><code>have a go at</code><button class="copy" type="button" data-copy="have a go at" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="初步涉足新领域 dip your toe into"><td>初步涉足新领域</td><td><code>dip your toe into</code><button class="copy" type="button" data-copy="dip your toe into" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="对某事很熟悉、自在 be at home with"><td>对某事很熟悉、自在</td><td><code>be at home with</code><button class="copy" type="button" data-copy="be at home with" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="对某事感兴趣 be into"><td>对某事感兴趣</td><td><code>be into</code><button class="copy" type="button" data-copy="be into" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="归根结底 boil down to / come down to"><td>归根结底</td><td><code>boil down to / come down to</code><button class="copy" type="button" data-copy="boil down to / come down to" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="查明问题根源 get to the bottom of"><td>查明问题根源</td><td><code>get to the bottom of</code><button class="copy" type="button" data-copy="get to the bottom of" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="扭转局势 turn the tide"><td>扭转局势</td><td><code>turn the tide</code><button class="copy" type="button" data-copy="turn the tide" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="彻底颠覆 turn sth on its head"><td>彻底颠覆</td><td><code>turn sth on its head</code><button class="copy" type="button" data-copy="turn sth on its head" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="重新开始 hit reset"><td>重新开始</td><td><code>hit reset</code><button class="copy" type="button" data-copy="hit reset" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="通向下一步的跳板 a stepping stone to"><td>通向下一步的跳板</td><td><code>a stepping stone to</code><button class="copy" type="button" data-copy="a stepping stone to" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="把某事融入另一件事 weave sth into sth"><td>把某事融入另一件事</td><td><code>weave sth into sth</code><button class="copy" type="button" data-copy="weave sth into sth" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="把意思传达清楚 get sth across"><td>把意思传达清楚</td><td><code>get sth across</code><button class="copy" type="button" data-copy="get sth across" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="回到之前的话题 circle back to"><td>回到之前的话题</td><td><code>circle back to</code><button class="copy" type="button" data-copy="circle back to" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="争取别人的支持 bring sb on board"><td>争取别人的支持</td><td><code>bring sb on board</code><button class="copy" type="button" data-copy="bring sb on board" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="自己表示支持 get on board / be on board with"><td>自己表示支持</td><td><code>get on board / be on board with</code><button class="copy" type="button" data-copy="get on board / be on board with" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="一次又一次 time and again"><td>一次又一次</td><td><code>time and again</code><button class="copy" type="button" data-copy="time and again" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="忙得团团转 run around like a headless chicken"><td>忙得团团转</td><td><code>run around like a headless chicken</code><button class="copy" type="button" data-copy="run around like a headless chicken" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="非常想做某事 be dying to"><td>非常想做某事</td><td><code>be dying to</code><button class="copy" type="button" data-copy="be dying to" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="已经非常满足 i couldn&#x27;t ask for more"><td>已经非常满足</td><td><code>I couldn&#x27;t ask for more</code><button class="copy" type="button" data-copy="I couldn&#x27;t ask for more" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="话到嘴边却想不起来 it&#x27;s on the tip of my tongue"><td>话到嘴边却想不起来</td><td><code>It&#x27;s on the tip of my tongue</code><button class="copy" type="button" data-copy="It&#x27;s on the tip of my tongue" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="显而易见的选择 a no-brainer"><td>显而易见的选择</td><td><code>a no-brainer</code><button class="copy" type="button" data-copy="a no-brainer" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="赏心悦目 a feast for the eyes"><td>赏心悦目</td><td><code>a feast for the eyes</code><button class="copy" type="button" data-copy="a feast for the eyes" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="让恐惧支配生活 let fear run your life"><td>让恐惧支配生活</td><td><code>let fear run your life</code><button class="copy" type="button" data-copy="let fear run your life" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="连续倒霉 a streak of bad luck"><td>连续倒霉</td><td><code>a streak of bad luck</code><button class="copy" type="button" data-copy="a streak of bad luck" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="掌握基础知识 have a good grip on the basics"><td>掌握基础知识</td><td><code>have a good grip on the basics</code><button class="copy" type="button" data-copy="have a good grip on the basics" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="朝坏的方向变化 change for the worse"><td>朝坏的方向变化</td><td><code>change for the worse</code><button class="copy" type="button" data-copy="change for the worse" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="某事本身 in and of itself"><td>某事本身</td><td><code>in and of itself</code><button class="copy" type="button" data-copy="in and of itself" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="两件事不是一回事 it&#x27;s one thing to..., it&#x27;s another to..."><td>两件事不是一回事</td><td><code>It&#x27;s one thing to..., it&#x27;s another to...</code><button class="copy" type="button" data-copy="It&#x27;s one thing to..., it&#x27;s another to..." aria-label="复制表达">复制</button></td></tr>
+<tr data-search="亲身体验才能明白 it&#x27;s one of those things where..."><td>亲身体验才能明白</td><td><code>It&#x27;s one of those things where...</code><button class="copy" type="button" data-copy="It&#x27;s one of those things where..." aria-label="复制表达">复制</button></td></tr>
+<tr data-search="类比两个事物的关系 what a is to x, b is to y"><td>类比两个事物的关系</td><td><code>What A is to X, B is to Y</code><button class="copy" type="button" data-copy="What A is to X, B is to Y" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="表达巅峰成就 the pinnacle of"><td>表达巅峰成就</td><td><code>the pinnacle of</code><button class="copy" type="button" data-copy="the pinnacle of" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="表达优缺点 pros and cons"><td>表达优缺点</td><td><code>pros and cons</code><button class="copy" type="button" data-copy="pros and cons" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="没什么损失 no skin off my nose"><td>没什么损失</td><td><code>no skin off my nose</code><button class="copy" type="button" data-copy="no skin off my nose" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="有好名声 have a good reputation"><td>有好名声</td><td><code>have a good reputation</code><button class="copy" type="button" data-copy="have a good reputation" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="经历过很多事情 i&#x27;ve been through a lot / i&#x27;ve seen it all"><td>经历过很多事情</td><td><code>I&#x27;ve been through a lot / I&#x27;ve seen it all</code><button class="copy" type="button" data-copy="I&#x27;ve been through a lot / I&#x27;ve seen it all" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="时间用完了 run out of time"><td>时间用完了</td><td><code>run out of time</code><button class="copy" type="button" data-copy="run out of time" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="出版 / 发布 be out"><td>出版 / 发布</td><td><code>be out</code><button class="copy" type="button" data-copy="be out" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="某现象存在或流行 sth is a thing"><td>某现象存在或流行</td><td><code>sth is a thing</code><button class="copy" type="button" data-copy="sth is a thing" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="某事对人有强烈影响 have a grip on sb"><td>某事对人有强烈影响</td><td><code>have a grip on sb</code><button class="copy" type="button" data-copy="have a grip on sb" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="赏心悦目 a treat for the eyes"><td>赏心悦目</td><td><code>a treat for the eyes</code><button class="copy" type="button" data-copy="a treat for the eyes" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="某人支持某计划 be on board with sth"><td>某人支持某计划</td><td><code>be on board with sth</code><button class="copy" type="button" data-copy="be on board with sth" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="脑海中反复想到某事 keep circling back to"><td>脑海中反复想到某事</td><td><code>keep circling back to</code><button class="copy" type="button" data-copy="keep circling back to" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="某事让人夜不能寐 keep sb up at night"><td>某事让人夜不能寐</td><td><code>keep sb up at night</code><button class="copy" type="button" data-copy="keep sb up at night" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="某事一直萦绕挥之不去 keep haunting sb"><td>某事一直萦绕挥之不去</td><td><code>keep haunting sb</code><button class="copy" type="button" data-copy="keep haunting sb" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="留下深刻印象/引人注意 stand out to sb"><td>留下深刻印象/引人注意</td><td><code>stand out to sb</code><button class="copy" type="button" data-copy="stand out to sb" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="至少/最起码 at the very least"><td>至少/最起码</td><td><code>at the very least</code><button class="copy" type="button" data-copy="at the very least" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="公平地说/客观地讲 to be fair"><td>公平地说/客观地讲</td><td><code>to be fair</code><button class="copy" type="button" data-copy="to be fair" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="在这个过程中/不知何时起 somewhere along the way"><td>在这个过程中/不知何时起</td><td><code>somewhere along the way</code><button class="copy" type="button" data-copy="somewhere along the way" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="不知怎么地/不知为何 somehow"><td>不知怎么地/不知为何</td><td><code>somehow</code><button class="copy" type="button" data-copy="somehow" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="没有什么比……更能体现 nowhere is that clearer than in..."><td>没有什么比……更能体现</td><td><code>Nowhere is that clearer than in...</code><button class="copy" type="button" data-copy="Nowhere is that clearer than in..." aria-label="复制表达">复制</button></td></tr>
+<tr data-search="给出 x，就会出现 y give x, and y."><td>给出 X，就会出现 Y</td><td><code>Give X, and Y.</code><button class="copy" type="button" data-copy="Give X, and Y." aria-label="复制表达">复制</button></td></tr>
+<tr data-search="和以往任何时候一样 as … as it has ever been"><td>和以往任何时候一样</td><td><code>as … as it has ever been</code><button class="copy" type="button" data-copy="as … as it has ever been" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="早就该做某事了 it’s high time + 主语 + 过去式"><td>早就该做某事了</td><td><code>It’s high time + 主语 + 过去式</code><button class="copy" type="button" data-copy="It’s high time + 主语 + 过去式" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="开始流行/逐渐被接受 catch on"><td>开始流行/逐渐被接受</td><td><code>catch on</code><button class="copy" type="button" data-copy="catch on" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="太差劲/讨厌 suck"><td>太差劲/讨厌</td><td><code>suck</code><button class="copy" type="button" data-copy="suck" aria-label="复制表达">复制</button></td></tr>
+<tr data-search="世上所有/无所不包 under the sun"><td>世上所有/无所不包</td><td><code>under the sun</code><button class="copy" type="button" data-copy="under the sun" aria-label="复制表达">复制</button></td></tr>
+</tbody></table></div>
+</section>
+<div class="empty" id="empty">没有找到匹配的表达。可以试试更短的中文关键词或英文关键词。</div>
+
+<!-- 各个详细分类板块（已将 suck 与 under the sun 完美并入第 12 部分“其他常用补充”） -->
+<section class="section" data-section="01 · 尝试、探索与熟悉"><h2>01 · 尝试, 探索与熟悉</h2><div class="cards">
+        <article class="card" data-search="have a go (at sth) 试一试，尤其是动手做某件事。 口语 / 通用 尝试一件具体的事 i&#x27;ll have a go at fixing it myself. 我自己试着修一下。 why don&#x27;t you have a go at it? 你为什么不试试看？">
+          <div class="card-top"><h3>have a go (at sth)</h3><span class="tag">口语 / 通用</span></div>
+          <p class="meaning">试一试，尤其是动手做某件事。</p>
+          <p class="use"><strong>快速定位：</strong>尝试一件具体的事</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;ll have a go at fixing it myself.</div><div class="zh">我自己试着修一下。</div></div><div class="example"><div class="en">Why don&#x27;t you have a go at it?</div><div class="zh">你为什么不试试看？</div></div></div>
+        </article>
+        <article class="card" data-search="dip your toe into sth 试探性地涉足一个新领域，还没有完全投入。 通用 / 比喻 初步尝试新领域 i&#x27;m dipping my toe into the swiss job market. 我正在试探性地进入瑞士就业市场。 she&#x27;s dipping her toe into investing. 她正在尝试涉足投资。">
+          <div class="card-top"><h3>dip your toe into sth</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">试探性地涉足一个新领域，还没有完全投入。</p>
+          <p class="use"><strong>快速定位：</strong>初步尝试新领域</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;m dipping my toe into the Swiss job market.</div><div class="zh">我正在试探性地进入瑞士就业市场。</div></div><div class="example"><div class="en">She&#x27;s dipping her toe into investing.</div><div class="zh">她正在尝试涉足投资。</div></div></div>
+        </article>
+        <article class="card" data-search="be at home with sth 对某事很熟悉、很自在，运用起来得心应手。 通用 熟悉、自在 i&#x27;m quite at home with c++, but less familiar with rust. 我对 c++ 很熟悉，但对 rust 没那么熟。 she&#x27;s at home with complex technical discussions. 她很擅长应对复杂的技术讨论。">
+          <div class="card-top"><h3>be at home with sth</h3><span class="tag">通用</span></div>
+          <p class="meaning">对某事很熟悉、很自在，运用起来得心应手。</p>
+          <p class="use"><strong>快速定位：</strong>熟悉、自在</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;m quite at home with C++, but less familiar with Rust.</div><div class="zh">我对 C++ 很熟悉，但对 Rust 没那么熟。</div></div><div class="example"><div class="en">She&#x27;s at home with complex technical discussions.</div><div class="zh">她很擅长应对复杂的技术讨论。</div></div></div>
+        </article>
+        <article class="card" data-search="be into sth 对某事感兴趣，常用于爱好和个人兴趣。 口语 表达兴趣 i&#x27;m really into languages at the moment. 我最近对语言特别感兴趣。 are you into climbing? 你对攀岩感兴趣吗？">
+          <div class="card-top"><h3>be into sth</h3><span class="tag">口语</span></div>
+          <p class="meaning">对某事感兴趣，常用于爱好和个人兴趣。</p>
+          <p class="use"><strong>快速定位：</strong>表达兴趣</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;m really into languages at the moment.</div><div class="zh">我最近对语言特别感兴趣。</div></div><div class="example"><div class="en">Are you into climbing?</div><div class="zh">你对攀岩感兴趣吗？</div></div></div>
+        </article>
+        <article class="card" data-search="come into its own 在特定情境下充分发挥价值或优势。 通用 / 比喻 显出真正价值 this technology comes into its own in low-latency applications. 这项技术在低延迟应用中才能真正发挥优势。 the city really comes into its own in summer. 这座城市到了夏天才真正展现出魅力。">
+          <div class="card-top"><h3>come into its own</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">在特定情境下充分发挥价值或优势。</p>
+          <p class="use"><strong>快速定位：</strong>显出真正价值</p>
+          <div class="examples"><div class="example"><div class="en">This technology comes into its own in low-latency applications.</div><div class="zh">这项技术在低延迟应用中才能真正发挥优势。</div></div><div class="example"><div class="en">The city really comes into its own in summer.</div><div class="zh">这座城市到了夏天才真正展现出魅力。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="02 · 归根结底、根源与本身"><h2>02 · 归根结底、根源与本身, 包含全部</h2><div class="cards">
+        <article class="card" data-search="boil down to sth 归根结底是……；把复杂问题归结为核心因素。 通用 / 分析 总结核心原因 it all boils down to money. 说到底还是钱的问题。 the problem boils down to a lack of communication. 这个问题归根结底是缺乏沟通。">
+          <div class="card-top"><h3>boil down to sth</h3><span class="tag">通用 / 分析</span></div>
+          <p class="meaning">归根结底是……；把复杂问题归结为核心因素。</p>
+          <p class="use"><strong>快速定位：</strong>总结核心原因</p>
+          <div class="examples"><div class="example"><div class="en">It all boils down to money.</div><div class="zh">说到底还是钱的问题。</div></div><div class="example"><div class="en">The problem boils down to a lack of communication.</div><div class="zh">这个问题归根结底是缺乏沟通。</div></div></div>
+        </article>
+        <article class="card" data-search="come down to sth 最终取决于……；归根结底在于……。 通用 / 分析 指出决定因素 it comes down to whether you&#x27;re willing to take the risk. 归根结底，取决于你是否愿意冒这个险。 in the end, it comes down to personal preference. 说到底，还是取决于个人喜好。">
+          <div class="card-top"><h3>come down to sth</h3><span class="tag">通用 / 分析</span></div>
+          <p class="meaning">最终取决于……；归根结底在于……。</p>
+          <p class="use"><strong>快速定位：</strong>指出决定因素</p>
+          <div class="examples"><div class="example"><div class="en">It comes down to whether you&#x27;re willing to take the risk.</div><div class="zh">归根结底，取决于你是否愿意冒这个险。</div></div><div class="example"><div class="en">In the end, it comes down to personal preference.</div><div class="zh">说到底，还是取决于个人喜好。</div></div></div>
+        </article>
+        <article class="card" data-search="in and of itself 就其本身而言；单从事物本身来看。 通用偏正式 强调事物本身 the idea isn&#x27;t bad in and of itself. 这个想法本身并不坏。 ai isn&#x27;t a problem in and of itself; it depends on how we use it. ai 本身不是问题，关键在于我们怎么使用它。">
+          <div class="card-top"><h3>in and of itself</h3><span class="tag">通用偏正式</span></div>
+          <p class="meaning">就其本身而言；单从事物本身来看。</p>
+          <p class="use"><strong>快速定位：</strong>强调事物本身</p>
+          <div class="examples"><div class="example"><div class="en">The idea isn&#x27;t bad in and of itself.</div><div class="zh">这个想法本身并不坏。</div></div><div class="example"><div class="en">AI isn&#x27;t a problem in and of itself; it depends on how we use it.</div><div class="zh">AI 本身不是问题，关键在于我们怎么使用它。</div></div></div>
+        </article>
+        <article class="card" data-search="get to the bottom of sth 追根究底、查明真相或找出问题根源。 通用 / 工作场景 查明根源 we need to get to the bottom of this issue. 我们得把这个问题彻底查清楚。 i&#x27;m trying to get to the bottom of what went wrong. 我正在努力弄清楚究竟哪里出了问题。">
+          <div class="card-top"><h3>get to the bottom of sth</h3><span class="tag">通用 / 工作场景</span></div>
+          <p class="meaning">追根究底、查明真相或找出问题根源。</p>
+          <p class="use"><strong>快速定位：</strong>查明根源</p>
+          <div class="examples"><div class="example"><div class="en">We need to get to the bottom of this issue.</div><div class="zh">我们得把这个问题彻底查清楚。</div></div><div class="example"><div class="en">I&#x27;m trying to get to the bottom of what went wrong.</div><div class="zh">我正在努力弄清楚究竟哪里出了问题。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="03 · 改变、扭转与重新开始"><h2>03 · 改变、扭转与重新开始</h2><div class="cards">
+        <article class="card" data-search="turn the tide 扭转局势，改变不利趋势。 通用 / 比喻 扭转局面 we need to turn the tide before it&#x27;s too late. 我们必须在为时已晚之前扭转局势。 the new strategy helped turn the tide. 新策略帮助扭转了局面。">
+          <div class="card-top"><h3>turn the tide</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">扭转局势，改变不利趋势。</p>
+          <p class="use"><strong>快速定位：</strong>扭转局面</p>
+          <div class="examples"><div class="example"><div class="en">We need to turn the tide before it&#x27;s too late.</div><div class="zh">我们必须在为时已晚之前扭转局势。</div></div><div class="example"><div class="en">The new strategy helped turn the tide.</div><div class="zh">新策略帮助扭转了局面。</div></div></div>
+        </article>
+        <article class="card" data-search="turn sth on its head 彻底颠覆原有的看法、做法或常规。 通用 / 比喻 彻底颠覆 ai has turned the way we write software on its head. ai 彻底改变了我们编写软件的方式。 the discovery turned our original assumptions on their head. 这个发现彻底颠覆了我们原来的假设。">
+          <div class="card-top"><h3>turn sth on its head</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">彻底颠覆原有的看法、做法或常规。</p>
+          <p class="use"><strong>快速定位：</strong>彻底颠覆</p>
+          <div class="examples"><div class="example"><div class="en">AI has turned the way we write software on its head.</div><div class="zh">AI 彻底改变了我们编写软件的方式。</div></div><div class="example"><div class="en">The discovery turned our original assumptions on their head.</div><div class="zh">这个发现彻底颠覆了我们原来的假设。</div></div></div>
+        </article>
+        <article class="card" data-search="hit reset 重新开始、重新调整方向或状态。 口语 / 比喻 重新开始 i need to hit reset and rethink my priorities. 我需要重新开始，重新考虑自己的优先事项。 after a difficult year, she decided to hit reset. 经历了艰难的一年后，她决定重新开始。">
+          <div class="card-top"><h3>hit reset</h3><span class="tag">口语 / 比喻</span></div>
+          <p class="meaning">重新开始、重新调整方向或状态。</p>
+          <p class="use"><strong>快速定位：</strong>重新开始</p>
+          <div class="examples"><div class="example"><div class="en">I need to hit reset and rethink my priorities.</div><div class="zh">我需要重新开始，重新考虑自己的优先事项。</div></div><div class="example"><div class="en">After a difficult year, she decided to hit reset.</div><div class="zh">经历了艰难的一年后，她决定重新开始。</div></div></div>
+        </article>
+        <article class="card" data-search="change for the better / worse 朝好的或坏的方向发生变化。 通用 描述好转或恶化 his attitude changed for the worse. 他的态度变得更差了。 things have changed for the better. 情况已经有所好转。 things have taken a turn for the worse. 情况突然恶化了。">
+          <div class="card-top"><h3>change for the better / worse</h3><span class="tag">通用</span></div>
+          <p class="meaning">朝好的或坏的方向发生变化。</p>
+          <p class="use"><strong>快速定位：</strong>描述好转或恶化</p>
+          <div class="examples"><div class="example"><div class="en">His attitude changed for the worse.</div><div class="zh">他的态度变得更差了。</div></div><div class="example"><div class="en">Things have changed for the better.</div><div class="zh">情况已经有所好转。</div></div><div class="example"><div class="en">Things have taken a turn for the worse.</div><div class="zh">情况突然恶化了。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="04 · 忙乱、连续发生与影响"><h2>04 · 忙乱、连续发生与影响</h2><div class="cards">
+        <article class="card" data-search="run around like a headless chicken 像无头苍蝇一样到处乱跑、忙得团团转，通常暗示缺乏计划。 口语 / 比喻 忙得团团转 i&#x27;ve been running around like a headless chicken all morning. 我整个早上都忙得团团转。 instead of running around like a headless chicken, we need a proper plan. 我们不能再像无头苍蝇一样乱忙了，得有个像样的计划。">
+          <div class="card-top"><h3>run around like a headless chicken</h3><span class="tag">口语 / 比喻</span></div>
+          <p class="meaning">像无头苍蝇一样到处乱跑、忙得团团转，通常暗示缺乏计划。</p>
+          <p class="use"><strong>快速定位：</strong>忙得团团转</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;ve been running around like a headless chicken all morning.</div><div class="zh">我整个早上都忙得团团转。</div></div><div class="example"><div class="en">Instead of running around like a headless chicken, we need a proper plan.</div><div class="zh">我们不能再像无头苍蝇一样乱忙了，得有个像样的计划。</div></div></div>
+        </article>
+        <article class="card" data-search="time and again 一次又一次，反复地。 通用 / 稍带书面感 反复发生 i&#x27;ve explained this time and again. 这件事我已经解释过很多次了。 time and again, we&#x27;ve seen the same problem. 同样的问题我们已经反复遇到过了。">
+          <div class="card-top"><h3>time and again</h3><span class="tag">通用 / 稍带书面感</span></div>
+          <p class="meaning">一次又一次，反复地。</p>
+          <p class="use"><strong>快速定位：</strong>反复发生</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;ve explained this time and again.</div><div class="zh">这件事我已经解释过很多次了。</div></div><div class="example"><div class="en">Time and again, we&#x27;ve seen the same problem.</div><div class="zh">同样的问题我们已经反复遇到过了。</div></div></div>
+        </article>
+        <article class="card" data-search="a streak of sth / be on a ... streak 一连串连续发生的事情，常用于好运、坏运或连胜。 通用 / 口语 连续的好运或坏运 i&#x27;ve had a streak of bad luck recently. 我最近接连遇到倒霉事。 the team is on a winning streak. 这支队伍正处于连胜状态。 i&#x27;ve been on a good streak lately. 我最近状态一直不错。">
+          <div class="card-top"><h3>a streak of sth / be on a ... streak</h3><span class="tag">通用 / 口语</span></div>
+          <p class="meaning">一连串连续发生的事情，常用于好运、坏运或连胜。</p>
+          <p class="use"><strong>快速定位：</strong>连续的好运或坏运</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;ve had a streak of bad luck recently.</div><div class="zh">我最近接连遇到倒霉事。</div></div><div class="example"><div class="en">The team is on a winning streak.</div><div class="zh">这支队伍正处于连胜状态。</div></div><div class="example"><div class="en">I&#x27;ve been on a good streak lately.</div><div class="zh">我最近状态一直不错。</div></div></div>
+        </article>
+        <article class="card" data-search="have a grip on sth 掌握某项知识；也可表示某事物牢牢控制着人或产生强烈影响。 通用 / 比喻 掌握或控制 i finally have a good grip on the basics. 我终于很好地掌握了基础知识。 fear had a grip on him. 恐惧牢牢控制着他。 that show had a grip on the nation. 那档节目吸引了全国观众，让大家欲罢不能。">
+          <div class="card-top"><h3>have a grip on sth</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">掌握某项知识；也可表示某事物牢牢控制着人或产生强烈影响。</p>
+          <p class="use"><strong>快速定位：</strong>掌握或控制</p>
+          <div class="examples"><div class="example"><div class="en">I finally have a good grip on the basics.</div><div class="zh">我终于很好地掌握了基础知识。</div></div><div class="example"><div class="en">Fear had a grip on him.</div><div class="zh">恐惧牢牢控制着他。</div></div><div class="example"><div class="en">That show had a grip on the nation.</div><div class="zh">那档节目吸引了全国观众，让大家欲罢不能。</div></div></div>
+        </article>
+        <article class="card" data-search="let sth run your life 让某件事或某种情绪支配自己的生活。 通用 / 比喻 不让某事支配生活 don&#x27;t let fear run your life. 别让恐惧支配你的生活。 i don&#x27;t want my job to run my life. 我不想让工作支配我的生活。">
+          <div class="card-top"><h3>let sth run your life</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">让某件事或某种情绪支配自己的生活。</p>
+          <p class="use"><strong>快速定位：</strong>不让某事支配生活</p>
+          <div class="examples"><div class="example"><div class="en">Don&#x27;t let fear run your life.</div><div class="zh">别让恐惧支配你的生活。</div></div><div class="example"><div class="en">I don&#x27;t want my job to run my life.</div><div class="zh">我不想让工作支配我的生活。</div></div></div>
+        </article>
+        <article class="card" data-search="move around 到处走动、四处移动；也可以指在不同地方生活或工作。 通用 走动或换地方 i like to move around and explore a new city. 我喜欢四处走走，探索一座新城市。 i&#x27;ve moved around quite a bit for work. 我因为工作换过不少地方。">
+          <div class="card-top"><h3>move around</h3><span class="tag">通用</span></div>
+          <p class="meaning">到处走动、四处移动；也可以指在不同地方生活或工作。</p>
+          <p class="use"><strong>快速定位：</strong>走动或换地方</p>
+          <div class="examples"><div class="example"><div class="en">I like to move around and explore a new city.</div><div class="zh">我喜欢四处走走，探索一座新城市。</div></div><div class="example"><div class="en">I&#x27;ve moved around quite a bit for work.</div><div class="zh">我因为工作换过不少地方。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="05 · 满足、愿望、损失与名声"><h2>05 · 满足、愿望、损失与名声</h2><div class="cards">
+        <article class="card" data-search="i couldn&#x27;t ask for more. 我已经非常满足了，没什么可再要求的了。 通用 / 自然口语 表达满足 the weather was perfect, and the food was amazing. i couldn&#x27;t ask for more. 天气完美，食物也很棒，我已经非常满足了。">
+          <div class="card-top"><h3>I couldn&#x27;t ask for more.</h3><span class="tag">通用 / 自然口语</span></div>
+          <p class="meaning">我已经非常满足了，没什么可再要求的了。</p>
+          <p class="use"><strong>快速定位：</strong>表达满足</p>
+          <div class="examples"><div class="example"><div class="en">The weather was perfect, and the food was amazing. I couldn&#x27;t ask for more.</div><div class="zh">天气完美，食物也很棒，我已经非常满足了。</div></div></div>
+        </article>
+        <article class="card" data-search="be dying to do sth 非常想做某事、迫不及待。 口语 表达强烈愿望 i&#x27;m dying to try that restaurant. 我特别想去那家餐厅试试。 i&#x27;ve been dying to visit switzerland. 我一直特别想去瑞士看看。">
+          <div class="card-top"><h3>be dying to do sth</h3><span class="tag">口语</span></div>
+          <p class="meaning">非常想做某事、迫不及待。</p>
+          <p class="use"><strong>快速定位：</strong>表达强烈愿望</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;m dying to try that restaurant.</div><div class="zh">我特别想去那家餐厅试试。</div></div><div class="example"><div class="en">I&#x27;ve been dying to visit Switzerland.</div><div class="zh">我一直特别想去瑞士看看。</div></div></div>
+        </article>
+        <article class="card" data-search="no skin off my nose / back 对我没有损失、没什么影响，常带有“我不在乎”的语气。 口语 / 习语 表示无损失 if he wants to leave, that&#x27;s no skin off my nose. 他想走就走，对我又没什么损失。">
+          <div class="card-top"><h3>no skin off my nose / back</h3><span class="tag">口语 / 习语</span></div>
+          <p class="meaning">对我没有损失、没什么影响，常带有“我不在乎”的语气。</p>
+          <p class="use"><strong>快速定位：</strong>表示无损失</p>
+          <div class="examples"><div class="example"><div class="en">If he wants to leave, that&#x27;s no skin off my nose.</div><div class="zh">他想走就走，对我又没什么损失。</div></div></div>
+        </article>
+        <article class="card" data-search="get a bad rap / have a good reputation get a bad rap 指名声不好或受到负面评价；have a good reputation 指拥有好名声。 通用 描述名声 c++ sometimes gets a bad rap for being difficult to use. c++ 有时会因为难用而受到不好的评价。 the company has a good reputation for reliability. 这家公司以可靠著称。">
+          <div class="card-top"><h3>get a bad rap / have a good reputation</h3><span class="tag">通用</span></div>
+          <p class="meaning">get a bad rap 指名声不好或受到负面评价；have a good reputation 指拥有好名声。</p>
+          <p class="use"><strong>快速定位：</strong>描述名声</p>
+          <div class="examples"><div class="example"><div class="en">C++ sometimes gets a bad rap for being difficult to use.</div><div class="zh">C++ 有时会因为难用而受到不好的评价。</div></div><div class="example"><div class="en">The company has a good reputation for reliability.</div><div class="zh">这家公司以可靠著称。</div></div></div>
+        </article>
+        <article class="card" data-search="i&#x27;ve seen it all / i&#x27;ve been through a lot 前者强调什么场面都见过；后者强调经历过很多事情，包括艰难经历。 口语 / 通用 描述阅历 after twenty years in the industry, i&#x27;ve seen it all. 在这个行业干了二十年，我什么场面都见过。 i&#x27;ve been through a lot over the years. 这些年来我经历了很多事情。">
+          <div class="card-top"><h3>I&#x27;ve seen it all / I&#x27;ve been through a lot</h3><span class="tag">口语 / 通用</span></div>
+          <p class="meaning">前者强调什么场面都见过；后者强调经历过很多事情，包括艰难经历。</p>
+          <p class="use"><strong>快速定位：</strong>描述阅历</p>
+          <div class="examples"><div class="example"><div class="en">After twenty years in the industry, I&#x27;ve seen it all.</div><div class="zh">在这个行业干了二十年，我什么场面都见过。</div></div><div class="example"><div class="en">I&#x27;ve been through a lot over the years.</div><div class="zh">这些年来我经历了很多事情。</div></div></div>
+        </article>
+        <article class="card" data-search="a no-brainer 显而易见的选择，几乎不需要考虑。 口语 显而易见的选择 taking the higher-paying job was a no-brainer. 选择薪水更高的工作是显而易见的决定。 it&#x27;s a no-brainer for me. 对我来说，这根本不用考虑。">
+          <div class="card-top"><h3>a no-brainer</h3><span class="tag">口语</span></div>
+          <p class="meaning">显而易见的选择，几乎不需要考虑。</p>
+          <p class="use"><strong>快速定位：</strong>显而易见的选择</p>
+          <div class="examples"><div class="example"><div class="en">Taking the higher-paying job was a no-brainer.</div><div class="zh">选择薪水更高的工作是显而易见的决定。</div></div><div class="example"><div class="en">It&#x27;s a no-brainer for me.</div><div class="zh">对我来说，这根本不用考虑。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="06 · 沟通、跟进与参与"><h2>06 · 沟通、跟进与参与</h2><div class="cards">
+        <article class="card" data-search="get sth across / get across to sb 把观点或信息传达清楚，让别人理解。 通用 / 职场 清楚传达 i couldn&#x27;t get my point across. 我没能把自己的观点表达清楚。 the message didn&#x27;t get across. 这个信息没有被清楚地传达出去。 i don&#x27;t think i got across to him. 我觉得他没有理解我的意思。">
+          <div class="card-top"><h3>get sth across / get across to sb</h3><span class="tag">通用 / 职场</span></div>
+          <p class="meaning">把观点或信息传达清楚，让别人理解。</p>
+          <p class="use"><strong>快速定位：</strong>清楚传达</p>
+          <div class="examples"><div class="example"><div class="en">I couldn&#x27;t get my point across.</div><div class="zh">我没能把自己的观点表达清楚。</div></div><div class="example"><div class="en">The message didn&#x27;t get across.</div><div class="zh">这个信息没有被清楚地传达出去。</div></div><div class="example"><div class="en">I don&#x27;t think I got across to him.</div><div class="zh">我觉得他没有理解我的意思。</div></div></div>
+        </article>
+        <article class="card" data-search="circle back to sth / go back to sth 回到之前的话题，或稍后重新讨论某个问题。 职场 / 通用 回到话题或跟进 let&#x27;s circle back to this after the meeting. 我们会后再回到这个问题。 i&#x27;ll circle back to you once i&#x27;ve checked the details. 我核实完细节后再联系你。 i keep going back to the same question. 我总是不由自主地回到同一个问题上。">
+          <div class="card-top"><h3>circle back to sth / go back to sth</h3><span class="tag">职场 / 通用</span></div>
+          <p class="meaning">回到之前的话题，或稍后重新讨论某个问题。</p>
+          <p class="use"><strong>快速定位：</strong>回到话题或跟进</p>
+          <div class="examples"><div class="example"><div class="en">Let&#x27;s circle back to this after the meeting.</div><div class="zh">我们会后再回到这个问题。</div></div><div class="example"><div class="en">I&#x27;ll circle back to you once I&#x27;ve checked the details.</div><div class="zh">我核实完细节后再联系你。</div></div><div class="example"><div class="en">I keep going back to the same question.</div><div class="zh">我总是不由自主地回到同一个问题上。</div></div></div>
+        </article>
+        <article class="card" data-search="bring sb on board / get on board 让别人加入或支持某个计划；也可以表示自己加入或认同。 职场 / 口语 争取或表示支持 we need to bring the team on board before making the change. 做出改变之前，我们需要先争取团队的支持。 it took a while to get everyone on board. 花了一段时间才让所有人都支持这个计划。 i&#x27;m on board with that idea. 我支持这个想法。">
+          <div class="card-top"><h3>bring sb on board / get on board</h3><span class="tag">职场 / 口语</span></div>
+          <p class="meaning">让别人加入或支持某个计划；也可以表示自己加入或认同。</p>
+          <p class="use"><strong>快速定位：</strong>争取或表示支持</p>
+          <div class="examples"><div class="example"><div class="en">We need to bring the team on board before making the change.</div><div class="zh">做出改变之前，我们需要先争取团队的支持。</div></div><div class="example"><div class="en">It took a while to get everyone on board.</div><div class="zh">花了一段时间才让所有人都支持这个计划。</div></div><div class="example"><div class="en">I&#x27;m on board with that idea.</div><div class="zh">我支持这个想法。</div></div></div>
+        </article>
+        <article class="card" data-search="be in / be out 含义依赖上下文：i&#x27;m in 表示参加；a book/version is out 表示出版、发布。 口语 / 语境决定 参与或已经发布 i&#x27;m in. 我参加／算我一个。 i&#x27;m in a book club. 我参加了一个读书俱乐部。 the new version is out. 新版本已经发布。">
+          <div class="card-top"><h3>be in / be out</h3><span class="tag">口语 / 语境决定</span></div>
+          <p class="meaning">含义依赖上下文：I&#x27;m in 表示参加；a book/version is out 表示出版、发布。</p>
+          <p class="use"><strong>快速定位：</strong>参与或已经发布</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;m in.</div><div class="zh">我参加／算我一个。</div></div><div class="example"><div class="en">I&#x27;m in a book club.</div><div class="zh">我参加了一个读书俱乐部。</div></div><div class="example"><div class="en">The new version is out.</div><div class="zh">新版本已经发布。</div></div></div>
+        </article>
+        <article class="card" data-search="run out of time 时间用完了，或来不及完成某件事。 通用 时间不够 we&#x27;re running out of time. 我们快没时间了。 i ran out of time before i could finish the task. 任务还没完成，时间就用完了。">
+          <div class="card-top"><h3>run out of time</h3><span class="tag">通用</span></div>
+          <p class="meaning">时间用完了，或来不及完成某件事。</p>
+          <p class="use"><strong>快速定位：</strong>时间不够</p>
+          <div class="examples"><div class="example"><div class="en">We&#x27;re running out of time.</div><div class="zh">我们快没时间了。</div></div><div class="example"><div class="en">I ran out of time before I could finish the task.</div><div class="zh">任务还没完成，时间就用完了。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="07 · 比喻：跳板、融入与视觉享受"><h2>07 · 比喻：跳板、融入与视觉享受</h2><div class="cards">
+        <article class="card" data-search="a stepping stone to sth 垫脚石、通向某个目标的跳板。 通用 / 比喻 通向下一步的跳板 this job could be a stepping stone to a better career. 这份工作可能是通向更好职业发展的跳板。 i&#x27;m treating this role as a stepping stone to working in switzerland. 我把这份工作当作进入瑞士工作的跳板。">
+          <div class="card-top"><h3>a stepping stone to sth</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">垫脚石、通向某个目标的跳板。</p>
+          <p class="use"><strong>快速定位：</strong>通向下一步的跳板</p>
+          <div class="examples"><div class="example"><div class="en">This job could be a stepping stone to a better career.</div><div class="zh">这份工作可能是通向更好职业发展的跳板。</div></div><div class="example"><div class="en">I&#x27;m treating this role as a stepping stone to working in Switzerland.</div><div class="zh">我把这份工作当作进入瑞士工作的跳板。</div></div></div>
+        </article>
+        <article class="card" data-search="weave sth into sth 把某个元素自然地融入另一件事中。 通用 / 比喻 自然融入 she managed to weave humour into her presentation. 她成功地把幽默融入了演讲。 i try to weave new expressions into my daily writing. 我尽量把新表达融入日常写作。">
+          <div class="card-top"><h3>weave sth into sth</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">把某个元素自然地融入另一件事中。</p>
+          <p class="use"><strong>快速定位：</strong>自然融入</p>
+          <div class="examples"><div class="example"><div class="en">She managed to weave humour into her presentation.</div><div class="zh">她成功地把幽默融入了演讲。</div></div><div class="example"><div class="en">I try to weave new expressions into my daily writing.</div><div class="zh">我尽量把新表达融入日常写作。</div></div></div>
+        </article>
+        <article class="card" data-search="a treat for the eyes / a feast for the eyes 赏心悦目、视觉上的享受。 通用 / 比喻 视觉享受 the gardens are a feast for the eyes. 这些花园美得令人赏心悦目。 the film is a real treat for the eyes. 这部电影在视觉上是一种享受。">
+          <div class="card-top"><h3>a treat for the eyes / a feast for the eyes</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">赏心悦目、视觉上的享受。</p>
+          <p class="use"><strong>快速定位：</strong>视觉享受</p>
+          <div class="examples"><div class="example"><div class="en">The gardens are a feast for the eyes.</div><div class="zh">这些花园美得令人赏心悦目。</div></div><div class="example"><div class="en">The film is a real treat for the eyes.</div><div class="zh">这部电影在视觉上是一种享受。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="08 · 句式：比较、类比与强调，不停想，影响深刻"><h2>08 · 句式：比较、类比与强调，不停想，影响深刻</h2><div class="cards">
+        <article class="card" data-search="it&#x27;s one thing to a; it&#x27;s another to b. 做 a 是一回事，做 b 又是另一回事。强调两件事的难度或性质不同。 通用 / 句式 强调两件事不同 it&#x27;s one thing to read about a culture; it&#x27;s another to experience it. 了解一种文化是一回事，亲身体验又是另一回事。 it&#x27;s one thing to write code with ai; it&#x27;s another to understand the code it generates. 用 ai 写代码是一回事，理解它生成的代码又是另一回事。">
+          <div class="card-top"><h3>It&#x27;s one thing to A; it&#x27;s another to B.</h3><span class="tag">通用 / 句式</span></div>
+          <p class="meaning">做 A 是一回事，做 B 又是另一回事。强调两件事的难度或性质不同。</p>
+          <p class="use"><strong>快速定位：</strong>强调两件事不同</p>
+          <div class="examples"><div class="example"><div class="en">It&#x27;s one thing to read about a culture; it&#x27;s another to experience it.</div><div class="zh">了解一种文化是一回事，亲身体验又是另一回事。</div></div><div class="example"><div class="en">It&#x27;s one thing to write code with AI; it&#x27;s another to understand the code it generates.</div><div class="zh">用 AI 写代码是一回事，理解它生成的代码又是另一回事。</div></div></div>
+        </article>
+        <article class="card" data-search="it&#x27;s one of those things where... 就是那种……的事情，常用于说明必须亲身经历才能理解。 口语 / 句式 亲身体验才能理解 it&#x27;s one of those things where you just have to experience it. 这就是那种你必须亲自体验才能明白的事情。 it&#x27;s one of those things where you don&#x27;t realise how difficult it is until you try it. 这就是那种你不亲自尝试，就不会意识到有多难的事情。">
+          <div class="card-top"><h3>It&#x27;s one of those things where...</h3><span class="tag">口语 / 句式</span></div>
+          <p class="meaning">就是那种……的事情，常用于说明必须亲身经历才能理解。</p>
+          <p class="use"><strong>快速定位：</strong>亲身体验才能理解</p>
+          <div class="examples"><div class="example"><div class="en">It&#x27;s one of those things where you just have to experience it.</div><div class="zh">这就是那种你必须亲自体验才能明白的事情。</div></div><div class="example"><div class="en">It&#x27;s one of those things where you don&#x27;t realise how difficult it is until you try it.</div><div class="zh">这就是那种你不亲自尝试，就不会意识到有多难的事情。</div></div></div>
+        </article>
+        <article class="card" data-search="what a is to x, b is to y. a 对 x 的意义，就像 b 对 y 的意义一样。 修辞句式 / 偏正式 类比两个事物 what exercise is to physical health, reading is to mental growth. 锻炼之于身体健康，就像阅读之于心智成长。 what practice is to speaking, feedback is to writing. 练习之于口语，就像反馈之于写作。">
+          <div class="card-top"><h3>What A is to X, B is to Y.</h3><span class="tag">修辞句式 / 偏正式</span></div>
+          <p class="meaning">A 对 X 的意义，就像 B 对 Y 的意义一样。</p>
+          <p class="use"><strong>快速定位：</strong>类比两个事物</p>
+          <div class="examples"><div class="example"><div class="en">What exercise is to physical health, reading is to mental growth.</div><div class="zh">锻炼之于身体健康，就像阅读之于心智成长。</div></div><div class="example"><div class="en">What practice is to speaking, feedback is to writing.</div><div class="zh">练习之于口语，就像反馈之于写作。</div></div></div>
+        </article>
+        <article class="card" data-search="the highest point of / the pinnacle of / the highlight of 分别偏向实际最高点、成就巅峰、某段经历中最精彩的部分。 通用 / 语义对比 表达最高点或亮点 this is the highest point of the mountain. 这是这座山的最高点。 winning the award was the pinnacle of her career. 获奖是她职业生涯的巅峰。 the concert was the highlight of my trip. 那场音乐会是我这趟旅行中最精彩的部分。">
+          <div class="card-top"><h3>the highest point of / the pinnacle of / the highlight of</h3><span class="tag">通用 / 语义对比</span></div>
+          <p class="meaning">分别偏向实际最高点、成就巅峰、某段经历中最精彩的部分。</p>
+          <p class="use"><strong>快速定位：</strong>表达最高点或亮点</p>
+          <div class="examples"><div class="example"><div class="en">This is the highest point of the mountain.</div><div class="zh">这是这座山的最高点。</div></div><div class="example"><div class="en">Winning the award was the pinnacle of her career.</div><div class="zh">获奖是她职业生涯的巅峰。</div></div><div class="example"><div class="en">The concert was the highlight of my trip.</div><div class="zh">那场音乐会是我这趟旅行中最精彩的部分。</div></div></div>
+        </article>
+        <article class="card" data-search="give x, and y. 给出 x，就会出现 y；带有简洁、有力的修辞效果。 句式模板 句式 give people time, and they’ll show you who they really are. 给人一些时间，他们就会让你看清真实的自己。">
+          <div class="card-top"><h3>Give X, and Y.</h3><span class="tag">句式模板</span></div>
+          <p class="meaning">给出 X，就会出现 Y；带有简洁、有力的修辞效果。</p>
+          <p class="use"><strong>快速定位：</strong>条件结果句式</p>
+          <div class="examples"><div class="example"><div class="en">Give people time, and they’ll show you who they really are.</div><div class="zh">给人一些时间，他们就会让你看清真实的自己。</div></div></div>
+        </article>
+        <article class="card" data-search="as … as it has ever been 和以往任何时候相比都一样……，常用于强调某种状态仍然很强。 句式模板 句式 the problem is as serious as it has ever been. 这个问题依然和以往一样严重。">
+          <div class="card-top"><h3>as … as it has ever been</h3><span class="tag">句式模板</span></div>
+          <p class="meaning">和以往任何时候相比都一样……，常用于强调某种状态仍然很强。</p>
+          <p class="use"><strong>快速定位：</strong>状态依旧</p>
+          <div class="examples"><div class="example"><div class="en">The problem is as serious as it has ever been.</div><div class="zh">这个问题依然和以往一样严重。</div></div></div>
+        </article>
+        <article class="card" data-search="it’s high time + 主语 + 过去式 早就该……了。虽然说的是现在或未来该做的事，传统句式里却用过去式。 句式模板 句式 it’s high time we left. 我们早就该走了。">
+          <div class="card-top"><h3>It’s high time + 主语 + 过去式</h3><span class="tag">句式模板</span></div>
+          <p class="meaning">早就该……了。虽然说的是现在或未来该做的事，传统句式里却用过去式。</p>
+          <p class="use"><strong>快速定位：</strong>早就该做了</p>
+          <div class="examples"><div class="example"><div class="en">It’s high time we left.</div><div class="zh">我们早就该走了。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="09 · 流行、控制与影响"><h2>09 · 流行、控制与影响</h2><div class="cards">
+        <article class="card" data-search="sth is a thing 某种现象或做法确实存在，也可以表示它已经流行起来。 口语 某现象存在或流行 is that actually a thing? 这居然是真的存在的吗？ apparently, working from cafés is a thing now. 看来现在在咖啡馆办公已经成了一种流行做法。">
+          <div class="card-top"><h3>sth is a thing</h3><span class="tag">口语</span></div>
+          <p class="meaning">某种现象或做法确实存在，也可以表示它已经流行起来。</p>
+          <p class="use"><strong>快速定位：</strong>某现象存在或流行</p>
+          <div class="examples"><div class="example"><div class="en">Is that actually a thing?</div><div class="zh">这居然是真的存在的吗？</div></div><div class="example"><div class="en">Apparently, working from cafés is a thing now.</div><div class="zh">看来现在在咖啡馆办公已经成了一种流行做法。</div></div></div>
+        </article>
+        <article class="card" data-search="catch on 开始流行、逐渐被接受或理解（从不流行到流行）。 口语 开始流行 the idea took a while to catch on. 这个想法过了一阵子才被大家接受。">
+          <div class="card-top"><h3>catch on</h3><span class="tag">口语</span></div>
+          <p class="meaning">开始流行、逐渐被接受或理解（从不流行到流行）。</p>
+          <p class="use"><strong>快速定位：</strong>开始流行</p>
+          <div class="examples"><div class="example"><div class="en">The idea took a while to catch on.</div><div class="zh">这个想法过了一阵子才被大家接受。</div></div></div>
+        </article>
+        <article class="card" data-search="have a grip on sb / the nation 牢牢吸引住、对群体有很强的控制力或吸引力，让人难以摆脱。 通用 / 比喻 牢牢吸引 that show had a grip on the nation. 那个节目吸引了全国观众，让大家都为之着迷。">
+          <div class="card-top"><h3>have a grip on sb / the nation</h3><span class="tag">通用 / 比喻</span></div>
+          <p class="meaning">牢牢吸引住、对群体有很强的控制力或吸引力，让人难以摆脱。</p>
+          <p class="use"><strong>快速定位：</strong>牢牢吸引</p>
+          <div class="examples"><div class="example"><div class="en">That show had a grip on the nation.</div><div class="zh">那个节目吸引了全国观众，让大家都为之着迷。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="10 · 利弊与好坏"><h2>10 · 利弊与好坏</h2><div class="cards">
+        <article class="card" data-search="pros and cons 优缺点、利弊，最通用的说法之一。 通用 讨论利弊 let&#x27;s weigh up the pros and cons. 我们来权衡一下利弊。">
+          <div class="card-top"><h3>pros and cons</h3><span class="tag">通用</span></div>
+          <p class="meaning">优缺点、利弊，最通用的说法之一。</p>
+          <p class="use"><strong>快速定位：</strong>讨论利弊</p>
+          <div class="examples"><div class="example"><div class="en">Let&#x27;s weigh up the pros and cons.</div><div class="zh">我们来权衡一下利弊。</div></div></div>
+        </article>
+        <article class="card" data-search="upsides and downsides 好处和坏处，适合自然的日常讨论。 口语 / 通用 口语讨论好坏 the main downside is the long commute. 主要缺点是通勤时间太长。 one big upside is the flexibility. 一个很大的优点是灵活性。 the upside is that i can work from home. the downside is that i don&#x27;t see many people. 好处是我可以在家办公，坏处是我见不到多少人。">
+          <div class="card-top"><h3>upsides and downsides</h3><span class="tag">口语 / 通用</span></div>
+          <p class="meaning">好处和坏处，适合自然的日常讨论。</p>
+          <p class="use"><strong>快速定位：</strong>口语讨论好坏</p>
+          <div class="examples"><div class="example"><div class="en">The main downside is the long commute.</div><div class="zh">主要缺点是通勤时间太长。</div></div><div class="example"><div class="en">One big upside is the flexibility.</div><div class="zh">一个很大的优点是灵活性。</div></div><div class="example"><div class="en">The upside is that I can work from home. The downside is that I don&#x27;t see many people.</div><div class="zh">好处是我可以在家办公，坏处是我见不到多少人。</div></div></div>
+        </article>
+        <article class="card" data-search="advantages and disadvantages 优点和缺点，适合报告、分析和正式讨论。 偏正式 正式分析利弊 we need to consider the advantages and disadvantages of each option. 我们需要考虑每个选项的优缺点。">
+          <div class="card-top"><h3>advantages and disadvantages</h3><span class="tag">偏正式</span></div>
+          <p class="meaning">优点和缺点，适合报告、分析和正式讨论。</p>
+          <p class="use"><strong>快速定位：</strong>正式分析利弊</p>
+          <div class="examples"><div class="example"><div class="en">We need to consider the advantages and disadvantages of each option.</div><div class="zh">我们需要考虑每个选项的优缺点。</div></div></div>
+        </article>
+        <article class="card" data-search="benefits and drawbacks 收益和弊端，常用于讨论方案、政策或做法。 中性偏正式 分析收益与代价 we need to weigh the benefits and drawbacks carefully. 我们需要仔细权衡其中的收益和弊端。">
+          <div class="card-top"><h3>benefits and drawbacks</h3><span class="tag">中性偏正式</span></div>
+          <p class="meaning">收益和弊端，常用于讨论方案、政策或做法。</p>
+          <p class="use"><strong>快速定位：</strong>分析收益与代价</p>
+          <div class="examples"><div class="example"><div class="en">We need to weigh the benefits and drawbacks carefully.</div><div class="zh">我们需要仔细权衡其中的收益和弊端。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="11 · 想不起来、没时间与连续发生"><h2>11 · 想不起来、没时间与连续发生</h2><div class="cards">
+        <article class="card" data-search="it&#x27;s on the tip of my tongue. 话到嘴边，但一时想不起来，尤其是名字或某个词。 口语 一时想不起词 what&#x27;s his name? it&#x27;s on the tip of my tongue. 他叫什么来着？我都到嘴边了，就是想不起来。">
+          <div class="card-top"><h3>It&#x27;s on the tip of my tongue.</h3><span class="tag">口语</span></div>
+          <p class="meaning">话到嘴边，但一时想不起来，尤其是名字或某个词。</p>
+          <p class="use"><strong>快速定位：</strong>一时想不起词</p>
+          <div class="examples"><div class="example"><div class="en">What&#x27;s his name? It&#x27;s on the tip of my tongue.</div><div class="zh">他叫什么来着？我都到嘴边了，就是想不起来。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="12 · 其他常用补充"><h2>12 · 其他常用补充</h2><div class="cards">
+        <article class="card" data-search="i couldn&#x27;t ask for more. 我已经非常满足了，没什么可再要求的了。 通用 / 自然口语 表达满足 the weather was perfect, and the food was amazing. i couldn&#x27;t ask for more. 天气完美，食物也很棒，我已经非常满足了。">
+          <div class="card-top"><h3>I couldn&#x27;t ask for more.</h3><span class="tag">通用 / 自然口语</span></div>
+          <p class="meaning">我已经非常满足了，没什么可再要求的了。</p>
+          <p class="use"><strong>快速定位：</strong>表达满足</p>
+          <div class="examples"><div class="example"><div class="en">The weather was perfect, and the food was amazing. I couldn&#x27;t ask for more.</div><div class="zh">天气完美，食物也很棒，我已经非常满足了。</div></div></div>
+        </article>
+        <article class="card" data-search="no skin off my nose / back 对我没有损失、没什么影响，常带有“我不在乎”的语气。 口语 / 习语 表示无损失 if he wants to leave, that&#x27;s no skin off my nose. 他想走就走，对我又没什么损失。">
+          <div class="card-top"><h3>no skin off my nose / back</h3><span class="tag">口语 / 习语</span></div>
+          <p class="meaning">对我没有损失、没什么影响，常带有“我不在乎”的语气。</p>
+          <p class="use"><strong>快速定位：</strong>表示无损失</p>
+          <div class="examples"><div class="example"><div class="en">If he wants to leave, that&#x27;s no skin off my nose.</div><div class="zh">他想走就走，对我又没什么损失。</div></div></div>
+        </article>
+        <article class="card" data-search="get a bad rap / have a good reputation get a bad rap 指受到负面评价；have a good reputation 指拥有好名声。 通用 描述名声 c++ sometimes gets a bad rap for being difficult to use. c++ 有时会因为难用而受到不好的评价。 the company has a good reputation for reliability. 这家公司以可靠著称。">
+          <div class="card-top"><h3>get a bad rap / have a good reputation</h3><span class="tag">通用</span></div>
+          <p class="meaning">get a bad rap 指受到负面评价；have a good reputation 指拥有好名声。</p>
+          <p class="use"><strong>快速定位：</strong>描述名声</p>
+          <div class="examples"><div class="example"><div class="en">C++ sometimes gets a bad rap for being difficult to use.</div><div class="zh">C++ 有时会因为难用而受到不好的评价。</div></div><div class="example"><div class="en">The company has a good reputation for reliability.</div><div class="zh">这家公司以可靠著称。</div></div></div>
+        </article>
+        <article class="card" data-search="i&#x27;ve seen it all / i&#x27;ve been through a lot 前者强调什么场面都见过；后者强调经历过很多事情。 口语 / 通用 描述阅历 after twenty years in the industry, i&#x27;ve seen it all. 在这个行业干了二十年，我什么场面都见过。 i&#x27;ve been through a lot over the years. 这些年来我经历了很多事情。">
+          <div class="card-top"><h3>I&#x27;ve seen it all / I&#x27;ve been through a lot</h3><span class="tag">口语 / 通用</span></div>
+          <p class="meaning">前者强调什么场面都见过；后者强调经历过很多事情。</p>
+          <p class="use"><strong>快速定位：</strong>描述阅历</p>
+          <div class="examples"><div class="example"><div class="en">After twenty years in the industry, I&#x27;ve seen it all.</div><div class="zh">在这个行业干了二十年，我什么场面都见过。</div></div><div class="example"><div class="en">I&#x27;ve been through a lot over the years.</div><div class="zh">这些年来我经历了很多事情。</div></div></div>
+        </article>
+        <article class="card" data-search="a streak of bad luck 一连串的坏运气。 通用 / 口语 连续倒霉 i&#x27;ve had a streak of bad luck lately. 我最近接连遇到倒霉事。">
+          <div class="card-top"><h3>a streak of bad luck</h3><span class="tag">通用 / 口语</span></div>
+          <p class="meaning">一连串的坏运气。</p>
+          <p class="use"><strong>快速定位：</strong>连续倒霉</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;ve had a streak of bad luck lately.</div><div class="zh">我最近接连遇到倒霉事。</div></div></div>
+        </article>
+        <article class="card" data-search="in and of itself 就其本身而言；不是固定的 be in and of itself 整体短语。 通用偏正式 强调事物本身 the tool isn&#x27;t dangerous in and of itself. 这个工具本身并不危险。">
+          <div class="card-top"><h3>in and of itself</h3><span class="tag">通用偏正式</span></div>
+          <p class="meaning">就其本身而言；不是固定的 be in and of itself 整体短语。</p>
+          <p class="use"><strong>快速定位：</strong>强调事物本身</p>
+          <div class="examples"><div class="example"><div class="en">The tool isn&#x27;t dangerous in and of itself.</div><div class="zh">这个工具本身并不危险。</div></div></div>
+        </article>
+        <article class="card" data-search="a headless chicken 常用在 run around like a headless chicken 中，形容忙乱、缺乏计划。 口语 / 比喻 忙乱 i&#x27;ve been running around like a headless chicken all morning. 我整个早上都忙得团团转。">
+          <div class="card-top"><h3>a headless chicken</h3><span class="tag">口语 / 比喻</span></div>
+          <p class="meaning">常用在 run around like a headless chicken 中，形容忙乱、缺乏计划。</p>
+          <p class="use"><strong>快速定位：</strong>忙乱</p>
+          <div class="examples"><div class="example"><div class="en">I&#x27;ve been running around like a headless chicken all morning.</div><div class="zh">我整个早上都忙得团团转。</div></div></div>
+        </article>
+        <article class="card" data-search="suck 太差劲、讨厌、令人失望（常用于口语中表达不满）。 口语 / 强烈 太差劲/糟糕 it really sucks that we missed the train. 我们没赶上火车，真是太糟糕了。 this situation totally sucks. 这种局面真是糟糕透顶。">
+          <div class="card-top"><h3>suck</h3><span class="tag">口语 / 强烈</span></div>
+          <p class="meaning">太差劲、讨厌、令人失望（常用于口语中表达不满）。</p>
+          <p class="use"><strong>快速定位：</strong>太差劲/糟糕</p>
+          <div class="examples"><div class="example"><div class="en">It really sucks that we missed the train.</div><div class="zh">我们没赶上火车，真是太糟糕了。</div></div><div class="example"><div class="en">This situation totally sucks.</div><div class="zh">这种局面真是糟糕透顶。</div></div></div>
+        </article>
+        <article class="card" data-search="under the sun 常见于 everything / anything / nothing + under the sun，意思是“世上所有……”，带有无所不包的修辞感。 口语 / 夸张 世上所有 we talked about everything under the sun. 我们什么话题都聊了。 you can find almost anything under the sun online. 你几乎可以在网上找到任何东西。">
+          <div class="card-top"><h3>under the sun</h3><span class="tag">口语 / 夸张</span></div>
+          <p class="meaning">常见于 everything / anything / nothing + under the sun，意思是“世上所有……”，带有无所不包的修辞感。</p>
+          <p class="use"><strong>快速定位：</strong>世上所有/无所不包</p>
+          <div class="examples"><div class="example"><div class="en">We talked about everything under the sun.</div><div class="zh">我们什么话题都聊了。</div></div><div class="example"><div class="en">You can find almost anything under the sun online.</div><div class="zh">你几乎可以在网上找到任何东西。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="13 · 萦绕在心头的思绪"><h2>13 · 萦绕在心头的思绪</h2><div class="cards">
+        <article class="card" data-search="keep circling back to sth 总是反复想到这个问题，强调思绪一次次回到同一件事。 通用 核心思绪 i keep circling back to the question. 我总是反复想到这个问题。">
+          <div class="card-top"><h3>keep circling back to sth</h3><span class="tag">通用</span></div>
+          <p class="meaning">总是反复想到这个问题，强调思绪一次次回到同一件事。</p>
+          <p class="use"><strong>快速定位：</strong>反复思考</p>
+          <div class="examples"><div class="example"><div class="en">I keep circling back to the question.</div><div class="zh">我总是反复想到这个问题。</div></div></div>
+        </article>
+        <article class="card" data-search="keep sb up at night 这个问题让我夜不能寐，口语，强调担忧、焦虑或难以释怀。 口语 夜不能寐 the question keeps me up at night. 这个问题让我夜不能寐。">
+          <div class="card-top"><h3>keep sb up at night</h3><span class="tag">口语</span></div>
+          <p class="meaning">这个问题让我夜不能寐，口语，强调担忧、焦虑或难以释怀。</p>
+          <p class="use"><strong>快速定位：</strong>焦虑失眠</p>
+          <div class="examples"><div class="example"><div class="en">The question keeps me up at night.</div><div class="zh">这个问题让我夜不能寐。</div></div></div>
+        </article>
+        <article class="card" data-search="keep haunting sb 这个问题一直萦绕着我、挥之不去。情绪更强，有被困扰的感觉。 感情较强 挥之不去 the question keeps haunting me. 这个问题一直萦绕着我、挥之不去。">
+          <div class="card-top"><h3>keep haunting sb</h3><span class="tag">感情较强</span></div>
+          <p class="meaning">这个问题一直萦绕着我、挥之不去。情绪更强，有被困扰的感觉。</p>
+          <p class="use"><strong>快速定位：</strong>挥之不去</p>
+          <div class="examples"><div class="example"><div class="en">The question keeps haunting me.</div><div class="zh">这个问题一直萦绕着我、挥之不去。</div></div></div>
+        </article>
+        <article class="card" data-search="stand out to sb 给我留下了特别深的印象／特别引起我的注意。通用，但强调“突出、引人注意”。 通用 特别注意 the question has really stood out to me. 这个问题给我留下了特别深的印象／特别引起我的注意。">
+          <div class="card-top"><h3>stand out to sb</h3><span class="tag">通用</span></div>
+          <p class="meaning">给我留下了特别深的印象／特别引起我的注意。通用，但强调“突出、引人注意”。</p>
+          <p class="use"><strong>快速定位：</strong>引人注意</p>
+          <div class="examples"><div class="example"><div class="en">The question has really stood out to me.</div><div class="zh">这个问题给我留下了特别深的印象／特别引起我的注意。</div></div></div>
+        </article></div></section>
+
+<section class="section" data-section="14 · 插入语、补充观点与强调论证"><h2>14 · 插入语、补充观点与强调论证</h2><div class="cards">
+        <article class="card" data-search="at the very least 至少；最起码。强调一个最低限度的要求或结论。 通用 最低限度 at the very least, we should test the code before shipping. 最起码，我们在发布前应该测试一下代码。">
+          <div class="card-top"><h3>at the very least</h3><span class="tag">通用</span></div>
+          <p class="meaning">至少；最起码。强调一个最低限度的要求或结论。</p>
+          <p class="use"><strong>快速定位：</strong>最低要求</p>
+          <div class="examples"><div class="example"><div class="en">At the very least, we should test the code before shipping.</div><div class="zh">最起码，我们在发布前应该测试一下代码。</div></div></div>
+        </article>
+        <article class="card" data-search="to be fair 公平地说；客观地讲。补充另一面，或承认对方有一定道理。 口语 / 通用 补充观点 to be fair, the bug wasn&#x27;t entirely your fault. 公平地说，这个 Bug 并不完全是你的错。">
+          <div class="card-top"><h3>to be fair</h3><span class="tag">口语 / 通用</span></div>
+          <p class="meaning">公平地说；客观地讲。补充另一面，或承认对方有一定道理。</p>
+          <p class="use"><strong>快速定位：</strong>客观讲</p>
+          <div class="examples"><div class="example"><div class="en">To be fair, the bug wasn&#x27;t entirely your fault.</div><div class="zh">公平地说，这个 Bug 并不完全是你的错。</div></div></div>
+        </article>
+        <article class="card" data-search="somewhere along the way 在这个过程中，不知从什么时候起。常用于描述变化或逐渐形成的认识。 通用 过程中不知何时 somewhere along the way, i fell in love with coding. 不知从什么时候起，我爱上了编程。">
+          <div class="card-top"><h3>somewhere along the way</h3><span class="tag">通用</span></div>
+          <p class="meaning">在这个过程中，不知从什么时候起。常用于描述变化或逐渐形成的认识。</p>
+          <p class="use"><strong>快速定位：</strong>不知何时起</p>
+          <div class="examples"><div class="example"><div class="en">Somewhere along the way, I fell in love with coding.</div><div class="zh">不知从什么时候起，我爱上了编程。</div></div></div>
+        </article>
+        <article class="card" data-search="somehow 不知怎么地；不知为何。可以表示原因不明，也可以表示以某种不明确的方式。 通用 不知怎么地 somehow, the project came together in the end. 不知怎么的，这个项目最后还是凑齐完成了。">
+          <div class="card-top"><h3>somehow</h3><span class="tag">通用</span></div>
+          <p class="meaning">不知怎么地；不知为何。可以表示原因不明，也可以表示以某种不明确的方式。</p>
+          <p class="use"><strong>快速定位：</strong>不知为何</p>
+          <div class="examples"><div class="example"><div class="en">Somehow, the project came together in the end.</div><div class="zh">不知怎么的，这个项目最后还是凑齐完成了。</div></div></div>
+        </article>
+        <article class="card" data-search="nowhere is that clearer than in ... 没有什么地方比……更能清楚地体现这一点。强调某个例子最能证明前面的论点。 书面 / 强调 最佳体现 nowhere is that clearer than in programming. 没有什么地方比编程更能清楚地体现这一点。">
+          <div class="card-top"><h3>Nowhere is that clearer than in ...</h3><span class="tag">书面 / 强调</span></div>
+          <p class="meaning">没有什么地方比……更能清楚地体现这一点。强调某个例子最能证明前面的论点。</p>
+          <p class="use"><strong>快速定位：</strong>最能体现</p>
+          <div class="examples"><div class="example"><div class="en">Nowhere is that clearer than in programming.</div><div class="zh">没有什么地方比编程更能清楚地体现这一点。</div></div></div>
+        </article></div></section>
+
+<footer>整理原则：按“想表达什么”查找；相近表达放在一起；标签仅表示常见语气倾向，不代表只能在某种场景使用。可用浏览器打印功能另存为 PDF。</footer>
+</main>
+<script>
+const search = document.getElementById('search');
+const filterButtons = [...document.querySelectorAll('#filters button')];
+const cards = [...document.querySelectorAll('.card')];
+const sections = [...document.querySelectorAll('.section')];
+const quickRows = [...document.querySelectorAll('#quick-body tr')];
+const quickPanel = document.getElementById('quick-panel');
+const empty = document.getElementById('empty');
+const count = document.getElementById('resultCount');
+let currentFilter = 'all';
+function update() {
+ const q = search.value.trim().toLowerCase();
+ let shown = 0;
+ cards.forEach(card => {
+   const text = card.dataset.search || '';
+   const tag = card.querySelector('.tag')?.textContent || '';
+   const filterOk = currentFilter === 'all' || tag.includes(currentFilter) || (currentFilter === '正式' && (tag.includes('正式') || tag.includes('书面')));
+   const match = (!q || text.includes(q)) && filterOk;
+   card.style.display = match ? '' : 'none';
+   if(match) shown++;
+ });
+ sections.forEach(section => {
+   const visible = [...section.querySelectorAll('.card')].some(card => card.style.display !== 'none');
+   section.style.display = visible ? '' : 'none';
+ });
+ let quickShown = 0;
+ quickRows.forEach(row => {
+   const match = (!q || (row.dataset.search || '').includes(q)) && (currentFilter === 'all');
+   row.style.display = match ? '' : 'none';
+   if(match) quickShown++;
+ });
+ quickPanel.style.display = (currentFilter === 'all' && (!q || quickShown > 0)) ? '' : 'none';
+ empty.style.display = shown === 0 && quickShown === 0 ? 'block' : 'none';
+ count.textContent = `找到 ${shown} 条表达` + (currentFilter === 'all' && !q ? ' · 显示完整手册' : '');
+}
+search.addEventListener('input', update);
+document.getElementById('clear').addEventListener('click', () => {search.value=''; currentFilter='all'; filterButtons.forEach(b=>b.classList.toggle('active',b.dataset.filter==='all')); update(); search.focus();});
+filterButtons.forEach(button => button.addEventListener('click', () => {currentFilter=button.dataset.filter; filterButtons.forEach(b=>b.classList.toggle('active',b===button)); update();}));
+document.querySelectorAll('.copy').forEach(button => button.addEventListener('click', async () => {
+ const text = button.dataset.copy;
+ try { await navigator.clipboard.writeText(text); button.textContent='已复制'; setTimeout(()=>button.textContent='复制',1200); }
+ catch { button.textContent='请手动复制'; }
+}));
+update();
+</script>
+</body>
+</html>
