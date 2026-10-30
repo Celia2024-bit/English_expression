@@ -17,6 +17,7 @@
 </div></header>
 <main>
 <div class="toolbar">
+<div class="tabs" id="tabs" role="tablist"><button type="button" class="active" data-view="expr">表达手册</button><button type="button" data-view="words">生词本</button></div>
 <div class="search-row"><input id="search" type="search" placeholder="搜索中文意思或英文表达，例如：尝试、归根结底、suck" autocomplete="off"><button id="clear" type="button">清除</button></div>
 <div class="filters" id="filters">
 <button class="active" data-filter="all">全部</button>
@@ -31,6 +32,7 @@
 <div class="editbar" id="editbar">
 <button type="button" id="addExpr">+ 新增表达</button>
 <button type="button" id="addCat">+ 新增分类</button>
+<button type="button" id="addWord" hidden>+ 新增生词</button>
 <span class="spacer"></span>
 <span id="dirtyState" class="clean">没有修改</span>
 <button type="button" id="discard">放弃修改</button>
@@ -39,6 +41,7 @@
 <div id="resultCount" aria-live="polite">正在加载…</div>
 </div>
 
+<div id="view-expr">
 <section class="panel" id="quick-panel">
 <h2>一页速查 <span class="small">— 按“想表达什么”找，点英文可跳到详细卡片</span></h2>
 <div id="quick-body" class="q-grid"></div>
@@ -48,6 +51,12 @@
 <div id="sections"></div>
 
 <footer>整理原则：按“想表达什么”查找；相近表达放在一起；标签仅表示常见语气倾向，不代表只能在某种场景使用。可用浏览器打印功能另存为 PDF。</footer>
+</div>
+
+<div id="view-words" hidden>
+<div class="empty" id="words-empty"></div>
+<div class="cards words-grid" id="words-list"></div>
+</div>
 </main>
 
 <dialog id="exprDialog">
@@ -62,6 +71,21 @@
 <label class="field"><span>快速定位</span><input type="text" id="fUse" placeholder="例如：尝试一件具体的事"></label>
 <div class="field"><span>例句（英文 / 中文）</span><div id="fExamples"></div><button type="button" id="fAddEx">+ 再加一条例句</button></div>
 <div class="dialog-actions"><button type="button" id="fCancel">取消</button><button type="submit" class="primary" id="fSubmit">添加</button></div>
+</form>
+</dialog>
+
+<dialog id="wordDialog">
+<form method="dialog" id="wordForm">
+<h2 id="wDlgTitle">新增生词</h2>
+<div class="row2">
+<label class="field"><span>单词 <em>*</em></span><input type="text" id="wWord" placeholder="例如：mitigate" required></label>
+<label class="field"><span>音标</span><input type="text" id="wPhon" placeholder="例如：/ˈmɪtɪɡeɪt/"></label>
+</div>
+<label class="field"><span>词性</span><input type="text" id="wPos" placeholder="例如：v. / n. / adj."></label>
+<label class="field"><span>中文释义 <em>*</em></span><textarea id="wMeaning" required placeholder="减轻；缓解"></textarea></label>
+<label class="field"><span>补充（搭配、词形变化等）</span><input type="text" id="wNote" placeholder="例如：mitigate the risk / impact；名词 mitigation"></label>
+<div class="field"><span>例句（英文 / 中文）</span><div id="wExamples"></div><button type="button" id="wAddEx">+ 再加一条例句</button></div>
+<div class="dialog-actions"><button type="button" id="wCancel">取消</button><button type="submit" class="primary" id="wSubmit">添加</button></div>
 </form>
 </dialog>
 

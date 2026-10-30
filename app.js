@@ -9,8 +9,11 @@ const state = {
   store: new Map(),   // id -> 表达数据
   pending: new Set(), // 还没写入磁盘的新表达 id
   modified: new Set(),// 已存在、被修改过的表达 id
+  words: [],          // 生词本
   dirty: false,
-  editing: false
+  wordsDirty: false,
+  editing: false,
+  view: 'expr'
 };
 let currentFilter = 'all';
 let drag = null;
@@ -38,7 +41,12 @@ async function load() {
   state.modified = new Set();
   const ids = [...new Set(state.categories.flatMap(c => c.items))];
   await Promise.all(ids.map(loadExpression));
+  try {
+    const wr = await fetch('words.json', {cache: 'no-store'});
+    state.words = wr.ok ? (await wr.json()).words || [] : [];
+  } catch { state.words = []; }
   setDirty(false);
+  setWordsDirty(false);
   render();
 }
 
@@ -107,14 +115,65 @@ document.addEventListener('click', e => {
   card.classList.add('flash');
 });
 
+const wordSearchText = w => [w.word, w.phonetic, w.pos, w.meaning, w.note, ...(w.examples || []).flatMap(e => [e.en, e.zh])].join(' ').toLowerCase();
+
+function wordCardHtml(w) {
+  return `<article class="card word-card" data-id="${esc(w.id)}" data-search="${esc(wordSearchText(w))}">
+<button type="button" class="edit-btn edit-only" data-act="edit-word" title="编辑这个生词">编辑</button><button type="button" class="del edit-only" data-act="del-word" title="删除这个生词">×</button>
+<div class="card-top"><h3 class="word">${esc(w.word)}</h3>${w.pos ? `<span class="tag" data-tone="通用">${esc(w.pos)}</span>` : ''}</div>
+<div class="phon">${w.phonetic ? `<span class="ipa">${esc(w.phonetic)}</span>` : ''}<button type="button" class="speak" data-speak="${esc(w.word)}" title="朗读">▶ 发音</button></div>
+<p class="meaning">${esc(w.meaning)}</p>
+${w.note ? `<p class="use"><strong>补充：</strong>${esc(w.note)}</p>` : ''}
+<div class="examples">${(w.examples || []).map(e => `<div class="example"><div class="en">${esc(e.en)}</div><div class="zh">${esc(e.zh)}</div></div>`).join('')}</div>
+${w.added ? `<div class="added">${esc(w.added)}</div>` : ''}
+</article>`;
+}
+
+function renderWords() {
+  $('words-list').innerHTML = state.words.map(wordCardHtml).join('');
+}
+
+function setView(v) {
+  state.view = v;
+  $('view-expr').hidden = v !== 'expr';
+  $('view-words').hidden = v !== 'words';
+  $('filters').hidden = v !== 'expr';
+  $('addExpr').hidden = $('addCat').hidden = v !== 'expr';
+  $('addWord').hidden = v !== 'words';
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+  $('search').placeholder = v === 'words' ? '搜索单词或中文释义，例如：mitigate、缓解' : '搜索中文意思或英文表达，例如：尝试、归根结底、suck';
+  try { history.replaceState(null, '', v === 'words' ? '#words' : location.pathname + location.search); } catch {}
+  applyFilter();
+}
+$('tabs').addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (b) setView(b.dataset.view);
+});
+
+function applyWordsFilter() {
+  const q = $('search').value.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll('#words-list .card').forEach(card => {
+    const match = !q || (card.dataset.search || '').includes(q);
+    card.style.display = match ? '' : 'none';
+    if (match) shown++;
+  });
+  const empty = $('words-empty');
+  empty.style.display = shown === 0 ? 'block' : 'none';
+  empty.textContent = state.words.length ? '没有找到匹配的生词。' : '还没有生词。进入编辑模式，点“新增生词”开始记录。';
+  $('resultCount').textContent = (state.editing ? '编辑模式 · ' : '') + (q ? `找到 ${shown} 个生词` : `共 ${state.words.length} 个生词`);
+}
+
 function render() {
   renderQuick();
   renderSections();
+  renderWords();
   applyFilter();
 }
 
 /* ---------- 搜索 / 过滤 ---------- */
 function applyFilter() {
+  if (state.view === 'words') { applyWordsFilter(); return; }
   const q = $('search').value.trim().toLowerCase();
   const filter = currentFilter;
   const filtering = !!q || filter !== 'all';
@@ -181,12 +240,14 @@ function toast(msg, isErr) {
   setTimeout(() => t.remove(), isErr ? 5000 : 2800);
 }
 
-function setDirty(v = true) {
-  state.dirty = v;
-  $('save').disabled = !v;
-  $('dirtyState').textContent = v ? '有未保存的修改' : '没有修改';
-  $('dirtyState').classList.toggle('clean', !v);
+function refreshDirtyUI() {
+  const any = state.dirty || state.wordsDirty;
+  $('save').disabled = !any;
+  $('dirtyState').textContent = any ? '有未保存的修改' : '没有修改';
+  $('dirtyState').classList.toggle('clean', !any);
 }
+function setDirty(v = true) { state.dirty = v; refreshDirtyUI(); }
+function setWordsDirty(v = true) { state.wordsDirty = v; refreshDirtyUI(); }
 
 async function ping() {
   try { const r = await fetch('/api/ping', {cache: 'no-store'}); return r.ok && (await r.json()).ok === true; }
@@ -198,7 +259,7 @@ $('editToggle').addEventListener('click', async () => {
     if (!(await ping())) { toast('没有检测到编辑服务。请先运行 node server.js（或双击 start.bat），再通过 http://localhost:8787 打开本页。', true); return; }
     state.editing = true;
   } else {
-    if (state.dirty && !confirm('还有未保存的修改，退出编辑模式会丢弃这些修改。确定退出吗？')) return;
+    if ((state.dirty || state.wordsDirty) && !confirm('还有未保存的修改，退出编辑模式会丢弃这些修改。确定退出吗？')) return;
     state.editing = false;
     document.body.classList.remove('editing');
     $('editToggle').textContent = '编辑';
@@ -211,31 +272,35 @@ $('editToggle').addEventListener('click', async () => {
 });
 
 $('discard').addEventListener('click', async () => {
-  if (state.dirty && !confirm('放弃所有未保存的修改？')) return;
+  if ((state.dirty || state.wordsDirty) && !confirm('放弃所有未保存的修改？')) return;
   await load();
 });
 
+async function post(url, body) {
+  const res = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)});
+  const out = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(out.error || res.status);
+  return out;
+}
+
 async function save() {
-  if (!state.dirty) return;
-  const referenced = new Set(state.categories.flatMap(c => c.items));
-  const expressions = {};
-  state.pending.forEach(id => { if (referenced.has(id)) expressions[id] = state.store.get(id); });
-  const updated = {};
-  state.modified.forEach(id => { if (referenced.has(id) && !state.pending.has(id)) updated[id] = state.store.get(id); });
+  if (!state.dirty && !state.wordsDirty) return;
   $('save').disabled = true;
   try {
-    const res = await fetch('/api/save', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({catalog: {...state.meta, categories: state.categories}, expressions, updated})
-    });
-    const out = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(out.error || res.status);
+    let out = {};
+    if (state.dirty) {
+      const referenced = new Set(state.categories.flatMap(c => c.items));
+      const expressions = {};
+      state.pending.forEach(id => { if (referenced.has(id)) expressions[id] = state.store.get(id); });
+      const updated = {};
+      state.modified.forEach(id => { if (referenced.has(id) && !state.pending.has(id)) updated[id] = state.store.get(id); });
+      out = await post('/api/save', {catalog: {...state.meta, categories: state.categories}, expressions, updated});
+    }
+    if (state.wordsDirty) await post('/api/words', {words: state.words});
     await load();
-    render();
     toast('已保存' + (out.trashed?.length ? `（${out.trashed.length} 个不再使用的页面已移到 sections/_deleted/）` : ''));
   } catch (err) {
-    $('save').disabled = false;
+    refreshDirtyUI();
     toast('保存失败：' + err.message, true);
   }
 }
@@ -243,7 +308,7 @@ $('save').addEventListener('click', save);
 document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's' && state.editing) { e.preventDefault(); save(); }
 });
-window.addEventListener('beforeunload', e => { if (state.dirty) { e.preventDefault(); e.returnValue = ''; } });
+window.addEventListener('beforeunload', e => { if (state.dirty || state.wordsDirty) { e.preventDefault(); e.returnValue = ''; } });
 
 /* ---------- 删除 / 重命名 / 新增分类 ---------- */
 document.addEventListener('click', e => {
@@ -256,6 +321,13 @@ document.addEventListener('click', e => {
     setDirty(); render();
   } else if (act === 'edit-card') {
     openExprDialog(btn.closest('.card').dataset.id);
+  } else if (act === 'edit-word') {
+    openWordDialog(btn.closest('.card').dataset.id);
+  } else if (act === 'del-word') {
+    const w = state.words.find(x => x.id === btn.closest('.card').dataset.id);
+    if (!w || !confirm(`删除生词 “${w.word}”？`)) return;
+    state.words = state.words.filter(x => x !== w);
+    setWordsDirty(); render();
   } else if (act === 'del-cat') {
     const cat = state.categories.find(c => c.id === btn.closest('.section').dataset.cat);
     if (!confirm(`删除分类“${cat.name}”？\n其中 ${cat.items.length} 条表达会从该分类移除；若它们不在其他分类中，保存时对应页面会被移到 sections/_deleted/。`)) return;
@@ -282,14 +354,14 @@ $('addCat').addEventListener('click', () => {
 /* ---------- 新增表达 ---------- */
 const dlg = $('exprDialog');
 
-function addExampleRow(en = '', zh = '') {
+function addExampleRow(en = '', zh = '', box = $('fExamples')) {
   const row = document.createElement('div');
   row.className = 'ex-row';
   row.innerHTML = '<input type="text" class="ex-en" placeholder="English example"><input type="text" class="ex-zh" placeholder="中文翻译"><button type="button" title="删除这条例句">×</button>';
   row.querySelector('.ex-en').value = en;
   row.querySelector('.ex-zh').value = zh;
   row.querySelector('button').addEventListener('click', () => row.remove());
-  $('fExamples').appendChild(row);
+  box.appendChild(row);
 }
 $('fAddEx').addEventListener('click', () => addExampleRow());
 $('fCancel').addEventListener('click', () => dlg.close());
@@ -354,6 +426,65 @@ $('exprForm').addEventListener('submit', e => {
   setDirty(); render();
   const el = document.querySelector(`.card[data-id="${CSS.escape(data.id)}"]`);
   el?.scrollIntoView({behavior: 'smooth', block: 'center'});
+});
+
+/* ---------- 生词本 ---------- */
+const wdlg = $('wordDialog');
+let editingWordId = null;
+$('wAddEx').addEventListener('click', () => addExampleRow('', '', $('wExamples')));
+$('wCancel').addEventListener('click', () => wdlg.close());
+
+function openWordDialog(id = null) {
+  editingWordId = id;
+  const w = id ? state.words.find(x => x.id === id) : null;
+  $('wordForm').reset();
+  $('wDlgTitle').textContent = w ? '编辑生词' : '新增生词';
+  $('wSubmit').textContent = w ? '保存修改' : '添加';
+  $('wExamples').innerHTML = '';
+  if (w) {
+    $('wWord').value = w.word; $('wPhon').value = w.phonetic || ''; $('wPos').value = w.pos || '';
+    $('wMeaning').value = w.meaning; $('wNote').value = w.note || '';
+    (w.examples || []).forEach(x => addExampleRow(x.en, x.zh, $('wExamples')));
+    if (!(w.examples || []).length) addExampleRow('', '', $('wExamples'));
+  } else { addExampleRow('', '', $('wExamples')); addExampleRow('', '', $('wExamples')); }
+  wdlg.showModal();
+  $('wWord').focus();
+}
+$('addWord').addEventListener('click', () => openWordDialog());
+
+function makeWordId(word) {
+  let base = word.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'w-' + Date.now().toString(36);
+  let id = base, n = 2;
+  while (state.words.some(x => x.id === id)) id = `${base}-${n++}`;
+  return id;
+}
+
+const todayStr = () => { const d = new Date(), p = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`; };
+
+$('wordForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const word = $('wWord').value.trim(), meaning = $('wMeaning').value.trim();
+  if (!word || !meaning) return;
+  const examples = [...document.querySelectorAll('#wExamples .ex-row')]
+    .map(r => ({en: r.querySelector('.ex-en').value.trim(), zh: r.querySelector('.ex-zh').value.trim()}))
+    .filter(x => x.en || x.zh);
+  const fields = {word, phonetic: $('wPhon').value.trim(), pos: $('wPos').value.trim(), meaning, note: $('wNote').value.trim(), examples};
+  if (editingWordId) Object.assign(state.words.find(x => x.id === editingWordId), fields);
+  else state.words.unshift({id: makeWordId(word), ...fields, added: todayStr()});
+  wdlg.close();
+  $('search').value = '';
+  setWordsDirty(); render();
+});
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-speak]');
+  if (!b) return;
+  if (!('speechSynthesis' in window)) { toast('当前浏览器不支持朗读', true); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(b.dataset.speak);
+  u.lang = 'en-US';
+  u.rate = 0.9;
+  speechSynthesis.speak(u);
 });
 
 /* ---------- 拖曳排序 ---------- */
@@ -430,6 +561,7 @@ document.addEventListener('dragend', e => {
   render();
 });
 
+setView(location.hash === '#words' ? 'words' : 'expr');
 load().catch(err => {
   $('resultCount').textContent = '加载失败：' + err.message + '（请通过 http://localhost:8787 访问，而不是直接双击打开 index.html）';
 });

@@ -5,3 +5,5 @@ categories.json.tmp
 node_modules/
 categories.regroup-backup.json
 categories.before-quick-removal.json
+words.json.bak
+words.json.tmp

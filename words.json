@@ -1,0 +1,30 @@
+{
+  "words": [
+    {
+      "id": "ravage",
+      "word": "ravage",
+      "phonetic": "/ˈrævɪdʒ/",
+      "pos": "v. / n.",
+      "meaning": "严重破坏；蹂躏；摧残。名词 ravages 常用复数，指破坏所造成的严重后果。",
+      "note": "常见搭配：the ravages of time / war / disease（岁月、战争、疾病的摧残）；ravaged by war（饱受战争摧残）",
+      "examples": [
+        {"en": "The wildfires ravaged thousands of hectares of forest.", "zh": "山火摧毁了数千公顷的森林。"},
+        {"en": "The old castle has survived the ravages of time.", "zh": "这座古堡熬过了岁月的侵蚀。"}
+      ],
+      "added": "2026-10-30"
+    },
+    {
+      "id": "mitigate",
+      "word": "mitigate",
+      "phonetic": "/ˈmɪtɪɡeɪt/",
+      "pos": "v.",
+      "meaning": "减轻；缓解（危害、影响、风险等的严重程度）。只是“减轻”，不等于“消除”。",
+      "note": "常见搭配：mitigate the risk / impact / effects of sth；名词 mitigation /ˌmɪtɪˈɡeɪʃn/（缓解、减轻）",
+      "examples": [
+        {"en": "Planting trees can help mitigate the effects of climate change.", "zh": "植树有助于减轻气候变化的影响。"},
+        {"en": "We added backups to mitigate the risk of data loss.", "zh": "我们增加了备份，以降低数据丢失的风险。"}
+      ],
+      "added": "2026-10-30"
+    }
+  ]
+}

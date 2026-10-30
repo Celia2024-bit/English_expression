@@ -9,9 +9,10 @@ const ROOT = __dirname;
 const PORT = Number(process.env.PORT) || 8787;
 const SECTIONS = path.join(ROOT, 'sections');
 const CATALOG = path.join(ROOT, 'categories.json');
+const WORDS = path.join(ROOT, 'words.json');
 
 const MIME = {'.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8'};
-const STATIC_ROOT_FILES = new Set(['index.html', 'style.css', 'app.js', 'categories.json']);
+const STATIC_ROOT_FILES = new Set(['index.html', 'style.css', 'app.js', 'categories.json', 'words.json']);
 
 class HttpError extends Error {
   constructor(status, message) { super(message); this.status = status; }
@@ -115,6 +116,39 @@ async function handleSave(req, res) {
   send(res, 200, {ok: true, trashed, updated: Object.keys(updates)});
 }
 
+async function handleWords(req, res) {
+  if (!/^application\/json\b/i.test(req.headers['content-type'] || '')) throw new HttpError(415, '需要 application/json');
+  let payload;
+  try { payload = JSON.parse(await readBody(req)); } catch (e) { if (e instanceof HttpError) throw e; throw new HttpError(400, 'JSON 解析失败'); }
+  if (!payload || !Array.isArray(payload.words) || payload.words.length > 5000) throw new HttpError(400, '生词数据格式不对');
+  const seen = new Set();
+  const words = payload.words.map(w => {
+    const id = str(w && w.id, 80);
+    const word = str(w && w.word, 100);
+    const meaning = str(w && w.meaning, 500);
+    if (!ID_RE.test(id)) throw new HttpError(400, '生词 id 不合法：' + id);
+    if (seen.has(id)) throw new HttpError(400, '生词 id 重复：' + id);
+    seen.add(id);
+    if (!word || !meaning) throw new HttpError(400, `${id}: 缺少单词或释义`);
+    const added = str(w.added, 10);
+    return {
+      id, word,
+      phonetic: str(w.phonetic, 100),
+      pos: str(w.pos, 50),
+      meaning,
+      note: str(w.note, 500),
+      examples: (Array.isArray(w.examples) ? w.examples : []).slice(0, 10)
+        .map(e => ({en: str(e && e.en, 500), zh: str(e && e.zh, 500)})).filter(e => e.en || e.zh),
+      added: /^\d{4}-\d{2}-\d{2}$/.test(added) ? added : ''
+    };
+  });
+  if (fs.existsSync(WORDS)) fs.copyFileSync(WORDS, WORDS + '.bak');
+  const tmp = WORDS + '.tmp';
+  fs.writeFileSync(tmp, JSON.stringify({words}, null, 2) + '\n', 'utf8');
+  fs.renameSync(tmp, WORDS);
+  send(res, 200, {ok: true, count: words.length});
+}
+
 function serveStatic(req, res, pathname) {
   let rel = decodeURIComponent(pathname).replace(/^\/+/, '');
   if (rel === '') rel = 'index.html';
@@ -133,6 +167,7 @@ const server = http.createServer(async (req, res) => {
     const {pathname} = new URL(req.url, 'http://localhost');
     if (pathname === '/api/ping' && req.method === 'GET') return send(res, 200, {ok: true});
     if (pathname === '/api/save' && req.method === 'POST') return await handleSave(req, res);
+    if (pathname === '/api/words' && req.method === 'POST') return await handleWords(req, res);
     if (pathname.startsWith('/api/')) throw new HttpError(404, 'Not found');
     if (req.method !== 'GET' && req.method !== 'HEAD') throw new HttpError(405, 'Method not allowed');
     serveStatic(req, res, pathname);
