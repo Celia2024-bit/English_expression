@@ -115,8 +115,9 @@ function render() {
 
 /* ---------- 搜索 / 过滤 ---------- */
 function applyFilter() {
-  const q = state.editing ? '' : $('search').value.trim().toLowerCase();
-  const filter = state.editing ? 'all' : currentFilter;
+  const q = $('search').value.trim().toLowerCase();
+  const filter = currentFilter;
+  const filtering = !!q || filter !== 'all';
   let shown = 0;
   const cards = [...document.querySelectorAll('#sections .card')];
   cards.forEach(card => {
@@ -128,7 +129,7 @@ function applyFilter() {
   });
   document.querySelectorAll('#sections .section').forEach(sec => {
     const visible = [...sec.querySelectorAll('.card')].some(c => c.style.display !== 'none');
-    sec.style.display = state.editing || visible ? '' : 'none';
+    sec.style.display = (state.editing && !filtering) || visible ? '' : 'none';
   });
   let quickShown = 0;
   document.querySelectorAll('#quick-body .q-row').forEach(row => {
@@ -141,9 +142,9 @@ function applyFilter() {
     if (q) g.open = true;
   });
   $('quick-panel').style.display = !state.editing && filter === 'all' && quickShown > 0 ? '' : 'none';
-  $('empty').style.display = !state.editing && shown === 0 ? 'block' : 'none';
+  $('empty').style.display = shown === 0 && (!state.editing || filtering) ? 'block' : 'none';
   $('resultCount').textContent = state.editing
-    ? `编辑模式 · ${state.categories.length} 个分类 · ${cards.length} 条表达`
+    ? `编辑模式 · ${state.categories.length} 个分类 · ${cards.length} 条表达` + (filtering ? ` · 当前筛选出 ${shown} 条` : '')
     : `找到 ${shown} 条表达` + (filter === 'all' && !q ? ' · 显示完整手册' : '');
 }
 
@@ -195,9 +196,6 @@ async function ping() {
 $('editToggle').addEventListener('click', async () => {
   if (!state.editing) {
     if (!(await ping())) { toast('没有检测到编辑服务。请先运行 node server.js（或双击 start.bat），再通过 http://localhost:8787 打开本页。', true); return; }
-    $('search').value = '';
-    currentFilter = 'all';
-    document.querySelectorAll('#filters button').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
     state.editing = true;
   } else {
     if (state.dirty && !confirm('还有未保存的修改，退出编辑模式会丢弃这些修改。确定退出吗？')) return;
@@ -350,6 +348,9 @@ $('exprForm').addEventListener('submit', e => {
   state.pending.add(data.id);
   state.categories.find(c => c.id === $('fCat').value).items.push(data.id);
   dlg.close();
+  $('search').value = '';
+  currentFilter = 'all';
+  document.querySelectorAll('#filters button').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
   setDirty(); render();
   const el = document.querySelector(`.card[data-id="${CSS.escape(data.id)}"]`);
   el?.scrollIntoView({behavior: 'smooth', block: 'center'});
