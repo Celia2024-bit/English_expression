@@ -54,8 +54,20 @@
       ]
     },
     {
+      "id": "cmvva44k0",
+      "name": "05 · 数量、程度与频率",
+      "items": [
+        "a-bunch-of-loads-of",
+        "big-time",
+        "way-better-much-far-a-lot",
+        "under-the-sun",
+        "time-and-again",
+        "a-streak-of-sth-be-on-a-streak"
+      ]
+    },
+    {
       "id": "c05",
-      "name": "05 · 变化、趋势与转折",
+      "name": "06 · 变化、趋势与转折",
       "items": [
         "turn-the-tide",
         "turn-sth-on-its-head",
@@ -68,7 +80,7 @@
     },
     {
       "id": "c06",
-      "name": "06 · 想法、记忆与印象",
+      "name": "07 · 想法、记忆与印象",
       "items": [
         "an-idea-hits-me-comes-to-mind",
         "its-on-the-tip-of-my-tongue",
@@ -83,7 +95,7 @@
     },
     {
       "id": "c07",
-      "name": "07 · 情绪、感受与态度",
+      "name": "08 · 情绪、感受与态度",
       "items": [
         "i-couldnt-ask-for-more",
         "no-skin-off-my-nose-back",
@@ -95,7 +107,7 @@
     },
     {
       "id": "c08",
-      "name": "08 · 尝试、兴趣与掌握",
+      "name": "09 · 尝试、兴趣与掌握",
       "items": [
         "have-a-go-at-sth",
         "dip-your-toe-into-sth",
@@ -106,15 +118,6 @@
         "be-dying-to-do-sth",
         "be-at-home-with-sth",
         "have-a-grip-on-sth"
-      ]
-    },
-    {
-      "id": "c09",
-      "name": "09 · 沟通与协作",
-      "items": [
-        "get-sth-across-get-across-to-sb",
-        "circle-back-to-sth-go-back-to-sth",
-        "bring-sb-on-board-get-on-board"
       ]
     },
     {
@@ -132,17 +135,14 @@
       "items": [
         "a-no-brainer",
         "its-own-thing",
-        "a-bunch-of-loads-of",
-        "big-time",
-        "under-the-sun",
         "have-sb-beat",
         "come-into-its-own",
         "weave-sth-into-sth",
-        "time-and-again",
-        "a-streak-of-sth-be-on-a-streak",
         "move-around",
         "be-in-be-out",
-        "way-better-much-far-a-lot"
+        "get-sth-across-get-across-to-sb",
+        "circle-back-to-sth-go-back-to-sth",
+        "bring-sb-on-board-get-on-board"
       ]
     }
   ]
