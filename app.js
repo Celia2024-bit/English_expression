@@ -127,8 +127,8 @@ function wordCardHtml(w) {
 ${w.hard ? '<div class="hard-badge">重点词 · 反复复习</div>' : ''}
 <div class="card-top"><h3 class="word">${esc(w.word)}</h3>${w.pos ? `<span class="tag" data-tone="通用">${esc(w.pos)}</span>` : ''}</div>
 ${w.syllables ? `<div class="syll">${syllablesHtml(w.syllables)}</div>` : ''}
-<div class="phon">${w.phonetic ? `<span class="ipa">${esc(w.phonetic)}</span>` : ''}<button type="button" class="speak" data-speak="${esc(w.word)}" title="朗读">▶ 发音</button></div>
-<p class="meaning">${esc(w.meaning)}</p>
+${w.phonetic ? `<div class="phon"><span class="ipa">${esc(w.phonetic)}</span><button type="button" class="speak" data-speak="${esc(w.word)}" title="朗读">▶ 发音</button></div>` : ''}
+<p class="meaning">${esc(w.meaning).replace(/\n/g, '<br>')}</p>
 ${w.mnemonic ? `<div class="mnemonic"><strong>记忆法</strong><p>${esc(w.mnemonic).replace(/\n/g, '<br>')}</p></div>` : ''}
 ${w.note ? `<p class="use"><strong>补充：</strong>${esc(w.note)}</p>` : ''}
 <div class="examples">${(w.examples || []).map(e => `<div class="example"><div class="en">${esc(e.en)}</div><div class="zh">${esc(e.zh)}</div></div>`).join('')}</div>

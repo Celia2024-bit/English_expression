@@ -1,6 +1,217 @@
 {
   "words": [
     {
+      "id": "vex",
+      "word": "vex",
+      "phonetic": "/veks/",
+      "pos": "v. / adj.",
+      "syllables": "VEX / VEX-ing",
+      "meaning": "vex：使烦恼、使恼火、困扰（书面、较正式）。\nvexing：令人烦恼的，棘手的。",
+      "note": "vexed question / issue（争论不休的难题）；名词 vexation（烦恼）；法语 vexer 指“伤害某人的感情、使不快”，比英语 vex 更偏冒犯",
+      "examples": [
+        {
+          "en": "It vexes me that nobody told me about the change.",
+          "zh": "没人告诉我这个变动，这让我很恼火。"
+        },
+        {
+          "en": "The vexing problem is still unsolved.",
+          "zh": "这个恼人的问题至今没解决。"
+        },
+        {
+          "en": "Whether to raise taxes is a vexed question.",
+          "zh": "要不要加税是个争论不休的难题。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "curse",
+      "word": "curse",
+      "phonetic": "/kɜːrs/ (英 /kɜːs/)",
+      "pos": "n. / v.",
+      "syllables": "CURSE",
+      "meaning": "n. 诅咒；咒语；祸根、灾星；咒骂的脏话。\nv. 诅咒；咒骂；be cursed with sth 指偏偏受……之苦。",
+      "note": "反义：bless / blessing（祝福）；curse word（脏话）；be cursed with sth（偏偏摊上……）",
+      "examples": [
+        {
+          "en": "The witch put a curse on the village.",
+          "zh": "女巫给村子下了诅咒。"
+        },
+        {
+          "en": "He cursed loudly when he dropped the glass.",
+          "zh": "他摔了杯子，大声咒骂起来。"
+        },
+        {
+          "en": "I'm cursed with terrible handwriting.",
+          "zh": "我偏偏写得一手烂字，真倒霉。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "vicious-circle",
+      "word": "vicious circle / vicious cycle",
+      "phonetic": "/ˌvɪʃəs ˈsɜːrkl/",
+      "pos": "n. phrase",
+      "meaning": "恶性循环：一件坏事导致另一件坏事，坏事反过来又加重最初的问题。\n法语：un cercle vicieux",
+      "note": "circle 和 cycle 两种说法都常用；反义：virtuous circle / cycle 良性循环（法语 un cercle vertueux）；常搭配 break the vicious circle（打破恶性循环）/ get caught in a vicious circle（陷入恶性循环）",
+      "examples": [
+        {
+          "en": "Stress causes poor sleep, and poor sleep causes more stress — it’s a vicious circle.",
+          "zh": "压力导致睡不好，睡不好又带来更多压力，这是个恶性循环。"
+        },
+        {
+          "en": "How do we break the vicious cycle of debt?",
+          "zh": "我们怎样才能打破债务的恶性循环？"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "meltdown",
+      "word": "meltdown",
+      "phonetic": "/ˈmeltdaʊn/",
+      "pos": "n.",
+      "syllables": "MELT-down",
+      "meaning": "①（核反应堆）堆芯熔毁。\n②（比喻）情绪或表现彻底失控、崩溃，也可指系统、市场、局面彻底崩盘。",
+      "note": "比喻用法见表达手册：have a meltdown / go into meltdown",
+      "examples": [
+        {
+          "en": "Engineers worked to prevent a meltdown at the plant.",
+          "zh": "工程师们努力防止电厂发生堆芯熔毁。"
+        },
+        {
+          "en": "She had a meltdown during the exam.",
+          "zh": "她在考试中情绪崩溃了。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "causal",
+      "word": "causal",
+      "phonetic": "/ˈkɔːzl/",
+      "pos": "adj.",
+      "syllables": "CAU-sal",
+      "meaning": "因果的；表示因果关系的。",
+      "mnemonic": "cause（原因）＋ -al（形容词后缀）＝ 因果的。\n别和 casual /ˈkæʒuəl/（随意的、休闲的）混：causal 里有 cau，和 cause 一样。",
+      "note": "a causal link / relationship / factor；名词 causality / causation（因果关系）；Correlation does not imply causation（相关不等于因果）；易混：casual",
+      "examples": [
+        {
+          "en": "There is a causal link between smoking and lung cancer.",
+          "zh": "吸烟和肺癌之间存在因果关系。"
+        },
+        {
+          "en": "Correlation does not imply a causal relationship.",
+          "zh": "相关并不意味着存在因果关系。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "relative-dates-from-now",
+      "word": "relative dates",
+      "phonetic": "",
+      "pos": "时间表达（以现在为基准）",
+      "meaning": "昨天 yesterday ｜ 法：hier\n前天 the day before yesterday ｜ 法：avant-hier\n明天 tomorrow ｜ 法：demain\n后天 the day after tomorrow ｜ 法：après-demain\n三天后 in three days ｜ 法：dans trois jours\n三天前 three days ago ｜ 法：il y a trois jours",
+      "mnemonic": "后天 ＝ the day after tomorrow（明天之后的一天）。\n注意：the day before tomorrow 其实就是“今天”，不能表示后天。\nin three days 用于将来；three days ago 用于过去。",
+      "note": "更口语：the day before yesterday ≈ two days ago；the day after tomorrow ≈ in two days",
+      "examples": [
+        {
+          "en": "I'll see you in three days.",
+          "zh": "三天后见。"
+        },
+        {
+          "en": "I met her three days ago.",
+          "zh": "我三天前见过她。"
+        },
+        {
+          "en": "The package arrives the day after tomorrow.",
+          "zh": "包裹后天到。"
+        },
+        {
+          "en": "I haven't heard from him since the day before yesterday.",
+          "zh": "从前天起我就没他的消息了。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "relative-dates-from-past",
+      "word": "the next day / the day before",
+      "phonetic": "",
+      "pos": "时间表达（以过去某时为基准）",
+      "meaning": "第二天 the next day / the following day / the day after ｜ 法：le lendemain\n前一天 the previous day / the day before ｜ 法：la veille\n三天后 three days later ｜ 法：trois jours plus tard\n三天前 three days earlier ｜ 法：trois jours plus tôt",
+      "mnemonic": "以现在为基准用 yesterday / tomorrow / ago；一旦基准是过去（或在讲故事），就换成 the next day / the day before / later / earlier。\n对应：tomorrow → the next day；yesterday → the day before；in three days → three days later；three days ago → three days earlier。",
+      "examples": [
+        {
+          "en": "He arrived on Monday, and the next day he left.",
+          "zh": "他周一到的，第二天就走了。"
+        },
+        {
+          "en": "She left the day before I arrived.",
+          "zh": "她在我到的前一天走了。"
+        },
+        {
+          "en": "He called me again three days later.",
+          "zh": "三天后他又给我打了电话。"
+        },
+        {
+          "en": "I had seen him the previous day.",
+          "zh": "我前一天见过他。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "applicable",
+      "word": "applicable",
+      "phonetic": "/əˈplɪkəbl/ (英也读 /ˈæplɪkəbl/)",
+      "pos": "adj.",
+      "syllables": "ap-PLIC-a-ble",
+      "meaning": "适用的；可应用的（规则、方法、规定适用于某对象）。",
+      "note": "applicable to sth（适用于……）；if applicable（如适用的话）；not applicable（不适用，表格里常写 N/A）；动词 apply，名词 application",
+      "examples": [
+        {
+          "en": "This rule is applicable to all employees.",
+          "zh": "这条规定适用于所有员工。"
+        },
+        {
+          "en": "Please fill in your tax number, if applicable.",
+          "zh": "如适用，请填写您的税号。"
+        },
+        {
+          "en": "The same method is applicable to other problems.",
+          "zh": "同样的方法也适用于其他问题。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "tweak",
+      "word": "tweak",
+      "phonetic": "/twiːk/",
+      "pos": "v. / n.",
+      "syllables": "TWEAK",
+      "meaning": "微调；稍作修改（不大动）。名词指小改动。",
+      "note": "make a few tweaks to sth；tweak the settings / design / code",
+      "examples": [
+        {
+          "en": "I just made a few tweaks to the design.",
+          "zh": "我只是对设计做了几处小改动。"
+        },
+        {
+          "en": "Can you tweak the settings a bit?",
+          "zh": "你能把设置稍微调一下吗？"
+        },
+        {
+          "en": "A small tweak can make a big difference.",
+          "zh": "一个小改动可能带来很大变化。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
       "id": "errand",
       "word": "errand",
       "phonetic": "/ˈerənd/",

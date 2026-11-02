@@ -125,7 +125,7 @@ async function handleWords(req, res) {
   const words = payload.words.map(w => {
     const id = str(w && w.id, 80);
     const word = str(w && w.word, 100);
-    const meaning = str(w && w.meaning, 500);
+    const meaning = str(w && w.meaning, 1000);
     if (!ID_RE.test(id)) throw new HttpError(400, '生词 id 不合法：' + id);
     if (seen.has(id)) throw new HttpError(400, '生词 id 重复：' + id);
     seen.add(id);
