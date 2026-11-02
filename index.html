@@ -55,6 +55,11 @@
 
 <div id="view-words" hidden>
 <div class="empty" id="words-empty"></div>
+<section id="words-hard-wrap" hidden>
+<h2 class="words-title">重点词 <span class="small">— 反复忘记的词，放在这里每次先看</span></h2>
+<div class="words-hard" id="words-hard"></div>
+</section>
+<h2 class="words-title" id="words-rest-title" hidden>其他生词</h2>
 <div class="cards words-grid" id="words-list"></div>
 </div>
 </main>
@@ -81,8 +86,13 @@
 <label class="field"><span>单词 <em>*</em></span><input type="text" id="wWord" placeholder="例如：mitigate" required></label>
 <label class="field"><span>音标</span><input type="text" id="wPhon" placeholder="例如：/ˈmɪtɪɡeɪt/"></label>
 </div>
+<div class="row2">
 <label class="field"><span>词性</span><input type="text" id="wPos" placeholder="例如：v. / n. / adj."></label>
+<label class="field"><span>音节拆分（重音用大写）</span><input type="text" id="wSyll" placeholder="例如：e-PHEM-er-al"></label>
+</div>
 <label class="field"><span>中文释义 <em>*</em></span><textarea id="wMeaning" required placeholder="减轻；缓解"></textarea></label>
+<label class="field"><span>记忆法（词源、联想、谐音等，可换行）</span><textarea id="wMnemo" placeholder="例如：希腊语 epi + hēmera（日子）= 只持续一天"></textarea></label>
+<label class="check"><input type="checkbox" id="wHard"> 重点词（总是记不住的词，放到页面最上面醒目显示）</label>
 <label class="field"><span>补充（搭配、词形变化等）</span><input type="text" id="wNote" placeholder="例如：mitigate the risk / impact；名词 mitigation"></label>
 <div class="field"><span>例句（英文 / 中文）</span><div id="wExamples"></div><button type="button" id="wAddEx">+ 再加一条例句</button></div>
 <div class="dialog-actions"><button type="button" id="wCancel">取消</button><button type="submit" class="primary" id="wSubmit">添加</button></div>

@@ -1,6 +1,162 @@
 {
   "words": [
     {
+      "id": "errand",
+      "word": "errand",
+      "phonetic": "/ˈerənd/",
+      "pos": "n.",
+      "syllables": "ER-rand",
+      "meaning": "差事；跑腿办的小事（出门办一件具体的事）。",
+      "mnemonic": "易混 errant：errand 结尾 -nd 是名词（差事），errant 结尾 -nt 是形容词（走偏的）。\n读音只差最后一个 d / t。",
+      "note": "run an errand / run errands（跑腿办事）；on an errand（出去办事）；errand boy（跑腿的）；易混：errant",
+      "examples": [
+        {
+          "en": "I have a few errands to run this afternoon.",
+          "zh": "我今天下午有几件事要出去办。"
+        },
+        {
+          "en": "She sent him on an errand to the post office.",
+          "zh": "她差他去邮局跑一趟。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "errant",
+      "word": "errant",
+      "phonetic": "/ˈerənt/",
+      "pos": "adj.",
+      "syllables": "ER-rant",
+      "meaning": "偏离正轨的；走错路的；行为失当的（书面、较正式；指“走偏了”，不是一般的“错误的 wrong”）。",
+      "mnemonic": "err- 来自拉丁语 errare（游荡、走错），和 error（错误）同源；-ant 是形容词词尾。\n对比 errand（n. 差事）：结尾 d＝名词，t＝形容词。",
+      "note": "常见搭配：errant shot / ball（偏离目标的一击/球）；errant husband / employee（行为不端的丈夫/员工）；knight-errant（游侠骑士）；易混：errand",
+      "examples": [
+        {
+          "en": "An errant shot hit the window.",
+          "zh": "一记偏离目标的射门击中了窗户。"
+        },
+        {
+          "en": "The company will discipline errant employees.",
+          "zh": "公司会处分行为失当的员工。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "high-end-luxury",
+      "word": "high-end luxury",
+      "phonetic": "/ˌhaɪ ˈend ˈlʌkʃəri/",
+      "pos": "adj. + n.",
+      "meaning": "高端奢侈品；高端奢华的。high-end 指档次高，luxury 指奢侈品或奢华享受。",
+      "note": "high-end（反义 low-end）；luxury 作形容词：luxury goods / hotel / brand；a luxury（可数）＝非必需的享受，如 Time is a luxury.",
+      "examples": [
+        {
+          "en": "She only buys high-end luxury brands.",
+          "zh": "她只买高端奢侈品牌。"
+        },
+        {
+          "en": "The hotel offers a high-end luxury experience.",
+          "zh": "这家酒店提供高端奢华的体验。"
+        },
+        {
+          "en": "Time is a luxury I can't afford right now.",
+          "zh": "时间是我现在负担不起的奢侈品。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "inadvertent",
+      "word": "inadvertent",
+      "phonetic": "/ˌɪnədˈvɜːrtənt/",
+      "pos": "adj.",
+      "syllables": "in-ad-VER-tent",
+      "meaning": "无意的；不经意造成的（多指疏忽导致的错误或后果，较正式）。副词 inadvertently；反义词 deliberate / intentional。",
+      "mnemonic": "in-（不）＋ advertent（留心的）＝ 不留心的 → 无意的。",
+      "note": "常见搭配：inadvertent error / omission / disclosure；inadvertently + 动词（不小心地……）；反义：deliberate / intentional",
+      "examples": [
+        {
+          "en": "I inadvertently deleted the wrong file.",
+          "zh": "我不小心删错了文件。"
+        },
+        {
+          "en": "The mistake was inadvertent, not deliberate.",
+          "zh": "这个错误是无心之失，不是故意的。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "advent",
+      "word": "advent",
+      "phonetic": "/ˈædvent/",
+      "pos": "n. (正式)",
+      "syllables": "AD-vent",
+      "meaning": "（重要事物、时代的）出现；到来。常用 the advent of + 事物。首字母大写的 Advent 指基督教的“降临节”。",
+      "mnemonic": "advent：ad-（朝向）＋ vent（来）＝ 朝这边来 → 到来、出现。\n易混 invent（v. 发明）：in-（在上面）＋ vent（来）＝ 碰上、找到 → 发明。\n词根 vent 都是“来”（拉丁语 venire），区别只在前缀 ad- / in-。",
+      "note": "the advent of sth（……的出现）；advent（n. 到来）vs invent（v. 发明，/ɪnˈvent/）——一个字母之差，例：Who invented the telephone?（电话是谁发明的？）",
+      "examples": [
+        {
+          "en": "Since the advent of smartphones, the way we read has changed.",
+          "zh": "自从智能手机出现，我们的阅读方式就变了。"
+        },
+        {
+          "en": "The advent of AI has changed how we write code.",
+          "zh": "AI 的出现改变了我们写代码的方式。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "quote",
+      "word": "quote",
+      "phonetic": "/kwoʊt/ (英 /kwəʊt/)",
+      "pos": "v. / n.",
+      "meaning": "引用（别人的话或文字）；名词 quote 也指“引文”，以及商业上的“报价”。",
+      "note": "quote sb / quote sth from...；a quote for the repairs（维修报价）；quotation marks 口语叫 quotes（引号）；正式地引用出处常用 cite",
+      "examples": [
+        {
+          "en": "She quoted a line from Shakespeare in her speech.",
+          "zh": "她在演讲中引用了莎士比亚的一句话。"
+        },
+        {
+          "en": "Can I quote you on that?",
+          "zh": "这句话我可以引用你的吗？"
+        },
+        {
+          "en": "Could you give me a quote for the repairs?",
+          "zh": "（报价）你能给我一个维修报价吗？"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
+      "id": "ephemeral",
+      "word": "ephemeral",
+      "phonetic": "/ɪˈfemərəl/",
+      "pos": "adj.",
+      "syllables": "e-PHEM-er-al",
+      "hard": true,
+      "meaning": "短暂的；转瞬即逝的；朝生暮死的（只存在很短的一段时间）。",
+      "mnemonic": "① 词源：希腊语 ephēmeros ＝ epi（在）＋ hēmera（日子）＝ 只持续一天。\n② 画面：蜉蝣 mayfly，成虫通常只能活一两天；昆虫学里蜉蝣目就叫 Ephemeroptera。\n③ 谐音：e-FEM-er-al ≈ “一飞没了”：一飞就没了，所以短暂。\n④ 重音在第二个音节 PHEM。\n⑤ 同族：ephemera（n. 票根、传单等一次性纸质品）。",
+      "note": "近义：fleeting / transient / short-lived；反义：eternal / permanent / lasting；常见搭配：ephemeral fame / beauty / pleasure",
+      "examples": [
+        {
+          "en": "Fame can be ephemeral.",
+          "zh": "名声可能转瞬即逝。"
+        },
+        {
+          "en": "Social media trends are ephemeral; they disappear within days.",
+          "zh": "社交媒体上的潮流稍纵即逝，几天内就消失了。"
+        },
+        {
+          "en": "The beauty of cherry blossoms is ephemeral.",
+          "zh": "樱花的美丽转瞬即逝。"
+        }
+      ],
+      "added": "2026-11-02"
+    },
+    {
       "id": "ravage",
       "word": "ravage",
       "phonetic": "/ˈrævɪdʒ/",
@@ -8,10 +164,17 @@
       "meaning": "严重破坏；蹂躏；摧残。名词 ravages 常用复数，指破坏所造成的严重后果。",
       "note": "常见搭配：the ravages of time / war / disease（岁月、战争、疾病的摧残）；ravaged by war（饱受战争摧残）",
       "examples": [
-        {"en": "The wildfires ravaged thousands of hectares of forest.", "zh": "山火摧毁了数千公顷的森林。"},
-        {"en": "The old castle has survived the ravages of time.", "zh": "这座古堡熬过了岁月的侵蚀。"}
+        {
+          "en": "The wildfires ravaged thousands of hectares of forest.",
+          "zh": "山火摧毁了数千公顷的森林。"
+        },
+        {
+          "en": "The old castle has survived the ravages of time.",
+          "zh": "这座古堡熬过了岁月的侵蚀。"
+        }
       ],
-      "added": "2026-10-30"
+      "added": "2026-10-30",
+      "syllables": "RAV-age"
     },
     {
       "id": "mitigate",
@@ -21,10 +184,17 @@
       "meaning": "减轻；缓解（危害、影响、风险等的严重程度）。只是“减轻”，不等于“消除”。",
       "note": "常见搭配：mitigate the risk / impact / effects of sth；名词 mitigation /ˌmɪtɪˈɡeɪʃn/（缓解、减轻）",
       "examples": [
-        {"en": "Planting trees can help mitigate the effects of climate change.", "zh": "植树有助于减轻气候变化的影响。"},
-        {"en": "We added backups to mitigate the risk of data loss.", "zh": "我们增加了备份，以降低数据丢失的风险。"}
+        {
+          "en": "Planting trees can help mitigate the effects of climate change.",
+          "zh": "植树有助于减轻气候变化的影响。"
+        },
+        {
+          "en": "We added backups to mitigate the risk of data loss.",
+          "zh": "我们增加了备份，以降低数据丢失的风险。"
+        }
       ],
-      "added": "2026-10-30"
+      "added": "2026-10-30",
+      "syllables": "MIT-i-gate"
     }
   ]
 }

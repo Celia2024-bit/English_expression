@@ -135,7 +135,10 @@ async function handleWords(req, res) {
       id, word,
       phonetic: str(w.phonetic, 100),
       pos: str(w.pos, 50),
+      syllables: str(w.syllables, 100),
       meaning,
+      mnemonic: str(w.mnemonic, 1500),
+      hard: w.hard === true,
       note: str(w.note, 500),
       examples: (Array.isArray(w.examples) ? w.examples : []).slice(0, 10)
         .map(e => ({en: str(e && e.en, 500), zh: str(e && e.zh, 500)})).filter(e => e.en || e.zh),

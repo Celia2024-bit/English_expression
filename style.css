@@ -139,6 +139,22 @@ footer{color:var(--muted);font-size:.82rem;padding:40px 0 0;text-align:center;bo
 .ipa{font:500 1rem var(--sans);color:var(--c);letter-spacing:.02em}
 .speak{padding:1px 10px;font-size:.74rem;border-radius:999px}
 .added{margin-top:8px;text-align:right;font-size:.72rem;color:var(--muted)}
+.words-title{margin:34px 0 14px}
+.syll{margin:2px 0 0;font:500 1.05rem var(--sans);letter-spacing:.08em;color:var(--muted)}
+.syll .stress{font-weight:800;font-size:1.25em;color:var(--c)}
+.mnemonic{margin:10px 0 12px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,#f5b301 16%,transparent);border:1px solid color-mix(in srgb,#f5b301 45%,transparent)}
+.mnemonic strong{display:block;font-size:.78rem;letter-spacing:.1em;color:#a06a00;margin-bottom:2px}
+.mnemonic p{margin:0;font-size:.95rem}
+@media(prefers-color-scheme:dark){.mnemonic strong{color:#f0c860}}
+.words-hard{display:grid;gap:18px}
+.words-hard .card{--c:#d6456b;padding:24px 28px;border:2px solid var(--c);border-top-width:6px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 9%,var(--paper)),var(--paper) 60%);box-shadow:0 10px 32px color-mix(in srgb,var(--c) 22%,transparent)}
+@media(prefers-color-scheme:dark){.words-hard .card{--c:#f27a9c}}
+.hard-badge{display:inline-block;margin-bottom:6px;padding:2px 12px;border-radius:999px;font-size:.75rem;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--c)}
+.words-hard .word{font-size:clamp(2.4rem,7vw,3.6rem);line-height:1.1;letter-spacing:.01em;background:linear-gradient(90deg,var(--c),#8a4fd0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.words-hard .syll{font-size:1.3rem;margin-top:6px}
+.words-hard .ipa{font-size:1.2rem}
+.words-hard .meaning{font-size:1.15rem;font-weight:600}
+@media(prefers-color-scheme:dark){.words-hard .card{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 14%,var(--paper)),var(--paper) 60%)}}
 
 /* ---------- 编辑模式 ---------- */
 .editbar{display:none;gap:8px;flex-wrap:wrap;align-items:center;margin-top:11px;padding:10px 12px;background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px}

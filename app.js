@@ -115,14 +115,21 @@ document.addEventListener('click', e => {
   card.classList.add('flash');
 });
 
-const wordSearchText = w => [w.word, w.phonetic, w.pos, w.meaning, w.note, ...(w.examples || []).flatMap(e => [e.en, e.zh])].join(' ').toLowerCase();
+const wordSearchText = w => [w.word, w.phonetic, w.pos, w.meaning, w.note, w.mnemonic, w.syllables, ...(w.examples || []).flatMap(e => [e.en, e.zh])].join(' ').toLowerCase();
+
+function syllablesHtml(str) {
+  return str.split(/([-·\s/()]+)/).map(t => /^[A-Z]{2,}$/.test(t) ? `<b class="stress">${esc(t.toLowerCase())}</b>` : esc(t)).join('');
+}
 
 function wordCardHtml(w) {
-  return `<article class="card word-card" data-id="${esc(w.id)}" data-search="${esc(wordSearchText(w))}">
+  return `<article class="card word-card${w.hard ? ' hard' : ''}" data-id="${esc(w.id)}" data-search="${esc(wordSearchText(w))}">
 <button type="button" class="edit-btn edit-only" data-act="edit-word" title="编辑这个生词">编辑</button><button type="button" class="del edit-only" data-act="del-word" title="删除这个生词">×</button>
+${w.hard ? '<div class="hard-badge">重点词 · 反复复习</div>' : ''}
 <div class="card-top"><h3 class="word">${esc(w.word)}</h3>${w.pos ? `<span class="tag" data-tone="通用">${esc(w.pos)}</span>` : ''}</div>
+${w.syllables ? `<div class="syll">${syllablesHtml(w.syllables)}</div>` : ''}
 <div class="phon">${w.phonetic ? `<span class="ipa">${esc(w.phonetic)}</span>` : ''}<button type="button" class="speak" data-speak="${esc(w.word)}" title="朗读">▶ 发音</button></div>
 <p class="meaning">${esc(w.meaning)}</p>
+${w.mnemonic ? `<div class="mnemonic"><strong>记忆法</strong><p>${esc(w.mnemonic).replace(/\n/g, '<br>')}</p></div>` : ''}
 ${w.note ? `<p class="use"><strong>补充：</strong>${esc(w.note)}</p>` : ''}
 <div class="examples">${(w.examples || []).map(e => `<div class="example"><div class="en">${esc(e.en)}</div><div class="zh">${esc(e.zh)}</div></div>`).join('')}</div>
 ${w.added ? `<div class="added">${esc(w.added)}</div>` : ''}
@@ -130,7 +137,11 @@ ${w.added ? `<div class="added">${esc(w.added)}</div>` : ''}
 }
 
 function renderWords() {
-  $('words-list').innerHTML = state.words.map(wordCardHtml).join('');
+  const hard = state.words.filter(w => w.hard), rest = state.words.filter(w => !w.hard);
+  $('words-hard').innerHTML = hard.map(wordCardHtml).join('');
+  $('words-list').innerHTML = rest.map(wordCardHtml).join('');
+  $('words-hard-wrap').hidden = !hard.length;
+  $('words-rest-title').hidden = !hard.length || !rest.length;
 }
 
 function setView(v) {
@@ -153,11 +164,14 @@ $('tabs').addEventListener('click', e => {
 function applyWordsFilter() {
   const q = $('search').value.trim().toLowerCase();
   let shown = 0;
-  document.querySelectorAll('#words-list .card').forEach(card => {
+  document.querySelectorAll('#view-words .card').forEach(card => {
     const match = !q || (card.dataset.search || '').includes(q);
     card.style.display = match ? '' : 'none';
     if (match) shown++;
   });
+  const anyVisible = sel => [...document.querySelectorAll(sel + ' .card')].some(c => c.style.display !== 'none');
+  $('words-hard-wrap').style.display = anyVisible('#words-hard') ? '' : 'none';
+  $('words-rest-title').style.display = anyVisible('#words-hard') && anyVisible('#words-list') ? '' : 'none';
   const empty = $('words-empty');
   empty.style.display = shown === 0 ? 'block' : 'none';
   empty.textContent = state.words.length ? '没有找到匹配的生词。' : '还没有生词。进入编辑模式，点“新增生词”开始记录。';
@@ -444,6 +458,7 @@ function openWordDialog(id = null) {
   if (w) {
     $('wWord').value = w.word; $('wPhon').value = w.phonetic || ''; $('wPos').value = w.pos || '';
     $('wMeaning').value = w.meaning; $('wNote').value = w.note || '';
+    $('wSyll').value = w.syllables || ''; $('wMnemo').value = w.mnemonic || ''; $('wHard').checked = !!w.hard;
     (w.examples || []).forEach(x => addExampleRow(x.en, x.zh, $('wExamples')));
     if (!(w.examples || []).length) addExampleRow('', '', $('wExamples'));
   } else { addExampleRow('', '', $('wExamples')); addExampleRow('', '', $('wExamples')); }
@@ -468,7 +483,7 @@ $('wordForm').addEventListener('submit', e => {
   const examples = [...document.querySelectorAll('#wExamples .ex-row')]
     .map(r => ({en: r.querySelector('.ex-en').value.trim(), zh: r.querySelector('.ex-zh').value.trim()}))
     .filter(x => x.en || x.zh);
-  const fields = {word, phonetic: $('wPhon').value.trim(), pos: $('wPos').value.trim(), meaning, note: $('wNote').value.trim(), examples};
+  const fields = {word, phonetic: $('wPhon').value.trim(), pos: $('wPos').value.trim(), syllables: $('wSyll').value.trim(), meaning, mnemonic: $('wMnemo').value.trim(), note: $('wNote').value.trim(), hard: $('wHard').checked, examples};
   if (editingWordId) Object.assign(state.words.find(x => x.id === editingWordId), fields);
   else state.words.unshift({id: makeWordId(word), ...fields, added: todayStr()});
   wdlg.close();
