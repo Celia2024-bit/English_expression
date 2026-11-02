@@ -13,7 +13,8 @@ const state = {
   dirty: false,
   wordsDirty: false,
   editing: false,
-  view: 'expr'
+  view: 'expr',
+  sort: 'category'    // category | date
 };
 let currentFilter = 'all';
 let drag = null;
@@ -78,15 +79,52 @@ function cardHtml(id) {
 <p class="meaning">${esc(d.meaning)}</p>
 ${d.use ? `<p class="use"><strong>快速定位：</strong>${esc(d.use)}</p>` : ''}
 <div class="examples">${d.examples.map(e => `<div class="example"><div class="en">${esc(e.en)}</div><div class="zh">${esc(e.zh)}</div></div>`).join('')}</div>
+${d.added ? `<div class="added">${esc(d.added)}</div>` : ''}
 </article>`;
 }
 
+function dateLabel(date) {
+  if (!date) return '未记录日期';
+  const d = new Date();
+  const fmt = x => `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+  if (date === fmt(d)) return `${date}（今天）`;
+  d.setDate(d.getDate() - 1);
+  return date === fmt(d) ? `${date}（昨天）` : date;
+}
+
 function renderSections() {
+  if (state.sort === 'date' && !state.editing) { renderByDate(); return; }
   $('sections').innerHTML = state.categories.map(c => `<section class="section" data-cat="${esc(c.id)}">
 <div class="cat-head"><span class="handle" title="拖动调整分类顺序">⋮⋮ 分类</span><h2>${headingHtml(c.name)}</h2><input type="text" class="cat-name" value="${esc(c.name)}" aria-label="分类名称"><button type="button" class="edit-only" data-act="del-cat">删除分类</button></div>
 <div class="cards">${c.items.map(cardHtml).join('')}</div>
 </section>`).join('');
 }
+
+function renderByDate() {
+  const ids = [...new Set(state.categories.flatMap(c => c.items))].filter(id => state.store.has(id));
+  const groups = new Map();
+  ids.forEach(id => {
+    const date = state.store.get(id).added || '';
+    if (!groups.has(date)) groups.set(date, []);
+    groups.get(date).push(id);
+  });
+  const dates = [...groups.keys()].sort((a, b) => (b || '').localeCompare(a || ''));
+  $('sections').innerHTML = dates.map(date => `<section class="section date-group" data-date="${esc(date)}">
+<div class="cat-head"><h2><span class="num">${esc(date ? date.slice(5) : '?')}</span><span>${esc(dateLabel(date))} · ${groups.get(date).length} 条</span></h2></div>
+<div class="cards">${groups.get(date).map(cardHtml).join('')}</div>
+</section>`).join('');
+}
+
+function updateSortUI() {
+  $('sortMode').value = state.editing ? 'category' : state.sort;
+  $('sortMode').disabled = state.editing;
+  $('sortMode').title = state.editing ? '编辑模式下按分类显示，退出编辑后可按时间排序' : '';
+}
+$('sortMode').addEventListener('change', e => {
+  state.sort = e.target.value === 'date' ? 'date' : 'category';
+  try { localStorage.setItem('sortMode', state.sort); } catch {}
+  render();
+});
 
 function shortTitle(t) {
   const p = t.split(' / ');
@@ -151,6 +189,7 @@ function setView(v) {
   $('filters').hidden = v !== 'expr';
   $('addExpr').hidden = $('addCat').hidden = v !== 'expr';
   $('addWord').hidden = v !== 'words';
+  $('sortMode').hidden = v !== 'expr';
   document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('active', b.dataset.view === v));
   $('search').placeholder = v === 'words' ? '搜索单词或中文释义，例如：mitigate、缓解' : '搜索中文意思或英文表达，例如：尝试、归根结底、suck';
   try { history.replaceState(null, '', v === 'words' ? '#words' : location.pathname + location.search); } catch {}
@@ -179,6 +218,7 @@ function applyWordsFilter() {
 }
 
 function render() {
+  updateSortUI();
   renderQuick();
   renderSections();
   renderWords();
@@ -214,7 +254,7 @@ function applyFilter() {
     g.style.display = [...g.querySelectorAll('.q-row')].some(r => r.style.display !== 'none') ? '' : 'none';
     if (q) g.open = true;
   });
-  $('quick-panel').style.display = !state.editing && filter === 'all' && quickShown > 0 ? '' : 'none';
+  $('quick-panel').style.display = !state.editing && state.sort === 'category' && filter === 'all' && quickShown > 0 ? '' : 'none';
   $('empty').style.display = shown === 0 && (!state.editing || filtering) ? 'block' : 'none';
   $('resultCount').textContent = state.editing
     ? `编辑模式 · ${state.categories.length} 个分类 · ${cards.length} 条表达` + (filtering ? ` · 当前筛选出 ${shown} 条` : '')
@@ -429,7 +469,7 @@ $('exprForm').addEventListener('submit', e => {
     setDirty(); render();
     return;
   }
-  const data = {id: makeId(title), ...fields};
+  const data = {id: makeId(title), ...fields, added: todayStr()};
   state.store.set(data.id, data);
   state.pending.add(data.id);
   state.categories.find(c => c.id === $('fCat').value).items.push(data.id);
@@ -576,6 +616,7 @@ document.addEventListener('dragend', e => {
   render();
 });
 
+try { if (localStorage.getItem('sortMode') === 'date') state.sort = 'date'; } catch {}
 setView(location.hash === '#words' ? 'words' : 'expr');
 load().catch(err => {
   $('resultCount').textContent = '加载失败：' + err.message + '（请通过 http://localhost:8787 访问，而不是直接双击打开 index.html）';

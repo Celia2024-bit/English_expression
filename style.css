@@ -48,6 +48,8 @@ button:disabled{opacity:.45;cursor:not-allowed;border-color:var(--field-line);co
 button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 button.primary:hover{filter:brightness(1.1);color:#fff}
 button.primary:disabled{filter:none;color:#fff}
+.search-row select{width:auto;margin-top:0;border-radius:14px;padding:0 14px;box-shadow:var(--shadow)}
+.search-row select:disabled{opacity:.5}
 .filters{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
 .filters button{border-radius:999px;padding:6px 14px;font-size:.85rem}
 .filters button.active{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 3px 10px color-mix(in srgb,var(--accent) 40%,transparent)}
