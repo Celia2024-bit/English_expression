@@ -1,6 +1,83 @@
 {
   "words": [
     {
+      "id": "someone-something-nothing-nobody",
+      "word": "someone / something / nothing / nobody",
+      "phonetic": "/ˈsʌmwʌn/ · /ˈsʌmθɪŋ/ · /ˈnʌθɪŋ/ · /ˈnoʊbɑːdi/",
+      "pos": "pron. / n.",
+      "meaning": "someone / somebody：（有地位的）人物，重要人物。\nnobody：无名小卒，微不足道的人。\nsomething：了不起、不简单的东西（或人）。\nnothing：微不足道、没有价值。",
+      "mnemonic": "someone / nobody：偏“社会属性”——名气、地位、别人怎么看你。\nsomething / nothing：偏“本人的分量”——有没有料、有没有成就。\n（这是帮助记忆的倾向，不是绝对规则：You’ll be somebody one day 也含有成就的意思。）",
+      "note": "be someone / be somebody（成为人物）；be a nobody（无名小卒）；be (really) something（真了不起）；be nothing without sb / sth（离了……什么都不是）；amount to nothing（一事无成）；表达手册里有 make something of yourself",
+      "examples": [
+        {
+          "en": "She wants to be somebody.",
+          "zh": "她想成为一个有分量的人。"
+        },
+        {
+          "en": "I was a nobody when I started out here.",
+          "zh": "我刚来这儿的时候还是个无名小卒。"
+        },
+        {
+          "en": "That kid is really something.",
+          "zh": "那孩子真了不起。"
+        },
+        {
+          "en": "I'm nothing without my team.",
+          "zh": "没有团队，我什么都不是。"
+        }
+      ],
+      "added": "2026-11-03"
+    },
+    {
+      "id": "aristocrat",
+      "word": "aristocrat / aristocracy",
+      "phonetic": "aristocrat /əˈrɪstəkræt/ · aristocracy /ˌærəˈstɑːkrəsi/",
+      "pos": "n.",
+      "syllables": "a-RIS-to-crat / a-ris-TOC-ra-cy",
+      "meaning": "aristocrat：贵族。\naristocracy：贵族阶层；贵族统治。形容词 aristocratic：贵族的、高贵优雅的。",
+      "mnemonic": "aristo-（希腊语 aristos＝最好的）＋ -cracy（统治，同 democracy、bureaucracy）＝ “最好的人统治”→ 贵族统治。\n-crat 是“……统治的人”（democrat、bureaucrat、aristocrat）。",
+      "note": "英式音：aristocrat /ˈærɪstəkræt/，aristocracy /ˌærɪˈstɒkrəsi/；重音在不同音节：a-RIS-to-crat，a-ris-TOC-ra-cy",
+      "examples": [
+        {
+          "en": "He was born into an old aristocratic family.",
+          "zh": "他出生在一个古老的贵族家庭。"
+        },
+        {
+          "en": "The aristocracy lost much of its power after the revolution.",
+          "zh": "革命之后，贵族阶层丧失了大部分权力。"
+        },
+        {
+          "en": "She dresses like an aristocrat.",
+          "zh": "她穿着打扮像个贵族。"
+        }
+      ],
+      "added": "2026-11-03"
+    },
+    {
+      "id": "preface",
+      "word": "preface",
+      "phonetic": "/ˈprefəs/",
+      "pos": "v. / n.",
+      "syllables": "PREF-ace",
+      "meaning": "v. 以……作为开场；先说……再说正题（preface sth with / by doing sth）。\nn. 序言、前言。",
+      "note": "preface sth with sth（以某物开头）；preface sth by doing sth（先做某事作为开场）；preface 通常由作者自己写，foreword 常由别人写",
+      "examples": [
+        {
+          "en": "He prefaced his remarks with a joke.",
+          "zh": "他以一个笑话作为发言的开场。"
+        },
+        {
+          "en": "She prefaced her talk by thanking the organizers.",
+          "zh": "她先感谢了组织者，然后才开始演讲。"
+        },
+        {
+          "en": "The author wrote a short preface to the new edition.",
+          "zh": "作者为新版写了一篇简短的序言。"
+        }
+      ],
+      "added": "2026-11-03"
+    },
+    {
       "id": "vex",
       "word": "vex",
       "phonetic": "/veks/",
@@ -252,6 +329,30 @@
         }
       ],
       "added": "2026-11-02"
+    },
+    {
+      "id": "slip-up",
+      "word": "slip up",
+      "phonetic": "/slɪp ʌp/",
+      "pos": "phr. v. / n. (slip-up)",
+      "meaning": "犯小错误；出小差错；疏忽失误（不是大错，多因不留神）。名词写作 slip-up。",
+      "mnemonic": "和 errant 是一家：err（v. 犯错，书面）→ errant（走偏的）；slip up 是同样意思的口语说法，指“滑了一下”的小失误。",
+      "note": "make a slip-up（出个小差错）；slip up on sth（在某事上出错）；更书面：to err is human（人非圣贤）",
+      "examples": [
+        {
+          "en": "I slipped up and sent the email to the wrong person.",
+          "zh": "我一不留神把邮件发给了错的人。"
+        },
+        {
+          "en": "One slip-up could cost us the contract.",
+          "zh": "一个小失误就可能让我们丢掉合同。"
+        },
+        {
+          "en": "Even experts slip up sometimes.",
+          "zh": "就连专家有时也会出小差错。"
+        }
+      ],
+      "added": "2026-11-03"
     },
     {
       "id": "high-end-luxury",
