@@ -55,25 +55,50 @@
     },
     {
       "id": "aristocrat",
-      "word": "aristocrat / aristocracy",
-      "phonetic": "aristocrat /əˈrɪstəkræt/ · aristocracy /ˌærəˈstɑːkrəsi/",
+      "word": "aristocrat",
+      "phonetic": "/əˈrɪstəkræt/ (英 /ˈærɪstəkræt/)",
       "pos": "n.",
-      "syllables": "a-RIS-to-crat / a-ris-TOC-ra-cy",
-      "meaning": "aristocrat：贵族。\naristocracy：贵族阶层；贵族统治。形容词 aristocratic：贵族的、高贵优雅的。",
-      "mnemonic": "aristo-（希腊语 aristos＝最好的）＋ -cracy（统治，同 democracy、bureaucracy）＝ “最好的人统治”→ 贵族统治。\n-crat 是“……统治的人”（democrat、bureaucrat、aristocrat）。",
-      "note": "英式音：aristocrat /ˈærɪstəkræt/，aristocracy /ˌærɪˈstɒkrəsi/；重音在不同音节：a-RIS-to-crat，a-ris-TOC-ra-cy",
+      "syllables": "a-RIS-to-crat",
+      "meaning": "贵族（指一个人）。形容词 aristocratic：贵族的、高贵优雅的。",
+      "mnemonic": "aristo-（希腊语 aristos＝最好的）＋ -crat（……统治的人，同 democrat、bureaucrat）＝ “最好的人中的统治者”→ 贵族。\n对比 aristocracy（n. 贵族阶层、贵族统治）：-crat 指人，-cracy 指制度或阶层。",
+      "note": "重音在第二个音节 RIS；形容词 aristocratic /ˌærɪstəˈkrætɪk/",
       "examples": [
+        {
+          "en": "The aristocrat lived in a huge country house.",
+          "zh": "这位贵族住在一座巨大的乡间庄园里。"
+        },
+        {
+          "en": "She dresses like an aristocrat.",
+          "zh": "她穿着打扮像个贵族。"
+        },
         {
           "en": "He was born into an old aristocratic family.",
           "zh": "他出生在一个古老的贵族家庭。"
-        },
+        }
+      ],
+      "added": "2026-11-03"
+    },
+    {
+      "id": "aristocracy",
+      "word": "aristocracy",
+      "phonetic": "/ˌærəˈstɑːkrəsi/ (英 /ˌærɪˈstɒkrəsi/)",
+      "pos": "n.",
+      "syllables": "a-ris-TOC-ra-cy",
+      "meaning": "贵族阶层；贵族统治（一群人或一种制度）。",
+      "mnemonic": "aristo-（最好的）＋ -cracy（统治，同 democracy、bureaucracy）＝ “最好的人统治”→ 贵族统治。\n对比 aristocrat（n. 贵族个人）：重音位置不同，aristocrat 重音在 RIS，aristocracy 重音在 TOC。",
+      "note": "重音在第四个音节 TOC；常见搭配：the landed aristocracy（土地贵族）、a member of the aristocracy（贵族成员）",
+      "examples": [
         {
           "en": "The aristocracy lost much of its power after the revolution.",
           "zh": "革命之后，贵族阶层丧失了大部分权力。"
         },
         {
-          "en": "She dresses like an aristocrat.",
-          "zh": "她穿着打扮像个贵族。"
+          "en": "In the 18th century, the aristocracy owned most of the land.",
+          "zh": "18 世纪时，贵族阶层拥有大部分土地。"
+        },
+        {
+          "en": "She married into the aristocracy.",
+          "zh": "她嫁入了贵族阶层。"
         }
       ],
       "added": "2026-11-03"
@@ -311,7 +336,9 @@
           "zh": "一个小改动可能带来很大变化。"
         }
       ],
-      "added": "2026-11-02"
+      "added": "2026-11-02",
+      "hard": true,
+      "mnemonic": "画面：用手指拧一下旋钮。tweak 原义是“拧、捏”，把旋钮轻轻拧一点点 → 微调。\n对比 change（改变）：tweak 只动一点点，不大动。"
     },
     {
       "id": "errand",
@@ -377,7 +404,8 @@
           "zh": "就连专家有时也会出小差错。"
         }
       ],
-      "added": "2026-11-03"
+      "added": "2026-11-03",
+      "hard": true
     },
     {
       "id": "high-end-luxury",
@@ -421,7 +449,8 @@
           "zh": "这个错误是无心之失，不是故意的。"
         }
       ],
-      "added": "2026-11-02"
+      "added": "2026-11-02",
+      "hard": true
     },
     {
       "id": "advent",
