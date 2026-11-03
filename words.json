@@ -1,6 +1,31 @@
 {
   "words": [
     {
+      "id": "latent",
+      "word": "latent",
+      "phonetic": "latent /ˈleɪtnt/ · talent /ˈtælənt/ · late /leɪt/",
+      "pos": "adj.",
+      "syllables": "LA-tent",
+      "meaning": "潜在的；潜伏的；隐性的（已经存在，但还没有显现或发展出来）。",
+      "mnemonic": "① 读音：LA-tent 的第一部分读得像 late /leɪt/，但意思和 late（晚的）无关。\n② 拼写：talent 和 latent 字母完全相同，只是第 1、3 个字母 t 与 l 对调（t-a-l-e-n-t ↔ l-a-t-e-n-t）。\n③ 搭配记忆：latent talent ＝ 潜在的才能（天赋还没显露）。\n④ 结尾是 tent（帐篷）：藏在帐篷里 → 潜伏、隐藏。",
+      "note": "三个词对比：latent（adj. 潜在的）/ talent（n. 才能、天赋）/ late（adj. adv. 晚的、迟的）；词源：latent 来自拉丁语 latere（隐藏），与 late 无关；常见搭配：latent talent / potential / demand / infection",
+      "examples": [
+        {
+          "en": "She has a latent talent for music that no one had noticed.",
+          "zh": "她有一种谁都没发现的潜在音乐天赋。"
+        },
+        {
+          "en": "The virus can remain latent in the body for years.",
+          "zh": "这种病毒可以在体内潜伏多年。"
+        },
+        {
+          "en": "There is huge latent demand for this product.",
+          "zh": "这款产品有巨大的潜在需求。"
+        }
+      ],
+      "added": "2026-11-03"
+    },
+    {
       "id": "someone-something-nothing-nobody",
       "word": "someone / something / nothing / nobody",
       "phonetic": "/ˈsʌmwʌn/ · /ˈsʌmθɪŋ/ · /ˈnʌθɪŋ/ · /ˈnoʊbɑːdi/",
